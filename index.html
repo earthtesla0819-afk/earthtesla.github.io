@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電気保安法人 株式会社アーステスラ｜インタラクティブサイト</title>
+    
+    <!-- Chosen Palette: Corporate Blue & Neutral -->
+    <!-- Application Structure Plan: A single-page, top-down scrolling application with a fixed header for persistent navigation. The structure includes: 1. Hero/About section to establish identity. 2. Services section with clear, icon-driven items. 3. An interactive Chart.js section to visualize business focus, adding a data-driven element. 4. A final Contact section. This thematic, linear flow is the most intuitive way for users to consume this specific, concise company information, guiding them from general identity to specific services and data, and finally to a call-to-action. -->
+    <!-- Visualization & Content Choices: Report Info: Business Overview -> Goal: Inform -> Presentation: Hero section with text and image -> Interaction: CTA button -> Justification: Immediately establishes brand identity. | Report Info: Core Services -> Goal: Organize/Inform -> Presentation: Icon-based list (HTML/FontAwesome) -> Interaction: Hover effects -> Justification: Enhances scannability and visual separation over plain text. | Report Info: Business Composition (Hypothetical) -> Goal: Compare/Inform -> Viz: Doughnut Chart -> Interaction: Clickable buttons to update data, tooltips on hover -> Justification: Visually represents the company's focus areas, making proportions easy to grasp. Library: Chart.js (Canvas). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f8fb;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .section-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #20A4F3;
+            padding-bottom: 0.5rem;
+            width: fit-content;
+        }
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+            color: #20A4F3;
+        }
+        .btn-primary {
+            background-color: #ffffff;
+            color: #1e293b;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background-color: #e2e8f0;
+            color: #0B4F6C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .nav-logo {
+            height: 40px;
+            width: auto;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            min-height: 300px;
+        }
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(32, 164, 243, 0.2);
+        }
+        .footer-bg-gradient {
+            background-image: linear-gradient(to right, #004aad, #5de0e6);
+        }
+        .text-gradient {
+            background-image: linear-gradient(to right, #004aad, #5de0e6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* ナビゲーションバーの「お問い合わせ」ボタン用の新しいスタイル */
+        .btn-gradient-nav {
+            background-image: linear-gradient(to right, #004aad, #5de0e6);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        .btn-gradient-nav:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 会社概要テーブルのレスポンシブ対応 */
+        @media (max-width: 768px) {
+            .responsive-table-cell {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .responsive-table-cell.label {
+                padding-top: 1rem;
+                padding-bottom: 0.25rem;
+                border-bottom: none;
+            }
+            .responsive-table-cell.value {
+                padding-bottom: 1rem;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .responsive-table-row {
+                display: block;
+                border-bottom: none;
+            }
+        }
+        /* iframeのスタイル */
+        .google-form-iframe {
+            width: 100%;
+            height: 1200px; /* 適切な高さに調整 */
+            border: none;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a class="flex items-center gap-2 shrink-0">
+                    <img src="https://earth-tesla.co.jp/wp-content/themes/EarthTesla_Theme/img/logo_wide.svg" alt="電気保安法人 株式会社アーステスラ ロゴ" class="nav-logo">
+                </a>
+                <!-- デスクトップナビゲーション -->
+                <nav class="hidden md:flex md:grow">
+                    <ul class="flex grow justify-end flex-wrap items-center gap-6">
+                        <!-- ユーザーの指示により、ナビゲーションアイテムを削除しました -->
+                    </ul>
+                </nav>
+                <!-- モバイルナビゲーションボタン -->
+                <button id="mobile-menu-button" class="md:hidden flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-[#20A4F3] hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#20A4F3]">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- モバイルナビゲーションメニュー -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-200">
+            <ul class="flex flex-col py-4 px-8 space-y-4">
+                <!-- ユーザーの指示により、ナビゲーションアイテムを削除しました -->
+            </ul>
+        </div>
+    </header>
+
+    <main class="grow pt-20">
+        <!-- ヒーローセクション -->
+        <!-- レスポンシブ対応のため、whitespace-nowrapを削除し、テキストサイズを調整 -->
+        <section id="hero" class="relative text-white footer-bg-gradient">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                <div class="grid md:grid-cols-1 gap-8 items-center">
+                    <div class="text-center">
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">電気保安法人 株式会社アーステスラとは</h1>
+                        <p class="text-lg sm:text-xl mb-4 font-bold">私たちアーステスラの事業概要</p>
+                        <p class="text-base sm:text-lg mb-8">私たちアーステスラは、建設業の電気に特化した<b class="font-bold">電気保安法人</b>です。<br>電気の安定供給を支える「<b class="font-bold">電力インフラの安全を守る</b>」ことを使命とし、社会に貢献しています。</p>
+                        <!-- ユーザーの指示により、「事業内容を見る」ボタンを削除しました -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- サービスセクション -->
+        <section id="services" class="py-16 md:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold section-heading mx-auto mb-12">
+                    <span class="section-icon"><i class="fas fa-tools"></i></span>事業内容
+                </h2>
+                <!-- ユーザーの指示に従い、事業内容セクションの内容を変更しました -->
+                <p class="text-slate-600 mb-8">私たちの提供する主要なサービスです。専門知識と技術で、お客様のニーズにお応えします。</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- サービスカード1: 電気保安管理 -->
+                    <div class="bg-slate-50 p-8 rounded-xl shadow-lg service-card">
+                        <div class="text-4xl text-[#20A4F3] mb-4"><i class="fas fa-bolt"></i></div>
+                        <h3 class="text-xl font-bold mb-2">電気保安管理</h3>
+                        <p class="text-slate-600">変電設備の安全と安定稼働を維持します。国家資格と専門知識を有する技術員が定期的な保守・点検を行い、事故を未然に防ぎます。</p>
+                    </div>
+                    <!-- サービスカード2: 電気工事 -->
+                    <div class="bg-slate-50 p-8 rounded-xl shadow-lg service-card">
+                        <div class="text-4xl text-[#20A4F3] mb-4"><i class="fas fa-hard-hat"></i></div>
+                        <h3 class="text-xl font-bold mb-2">電気工事</h3>
+                        <p class="text-slate-600">最新技術と高品質な施工で設備を強化・更新します。お客様のニーズに合わせた最適な電気工事を提供します。</p>
+                    </div>
+                    <!-- サービスカード3: 教育事業 -->
+                    <div class="bg-slate-50 p-8 rounded-xl shadow-lg service-card">
+                        <div class="text-4xl text-[#20A4F3] mb-4"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="text-xl font-bold mb-2">教育事業</h3>
+                        <p class="text-slate-600">専門知識と技術の継承を目的とした教育事業を展開しています。次世代の育成に取り組み、業界の発展に貢献します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 視覚化セクション -->
+        <section id="qualifications" class="py-16 md:py-24 bg-[#f4f8fb]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold section-heading mx-auto mb-12">
+                    <span class="section-icon"><i class="fas fa-chart-pie"></i></span>事業構成比
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-left">
+                        <h3 class="text-2xl font-bold text-[#0B4F6C] mb-4">私たちの事業の柱</h3>
+                        <p class="text-slate-600 mb-6">アーステスラの事業は、主に電気保安管理、電気工事、そして次世代の技術者育成を担う教育事業の3つの柱から成り立っています。以下のグラフは、これらの事業が全体に占める割合を視覚的に示しています。</p>
+                        <div class="flex space-x-4 justify-center md:justify-start">
+                            <button onclick="updateChart('current')" class="btn-primary">現在の構成</button>
+                            <button onclick="updateChart('future')" class="btn-primary">将来の展望</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="businessChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 会社概要セクション -->
+        <section id="company" class="py-16 md:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold section-heading mx-auto mb-12">
+                    <span class="section-icon"><i class="fas fa-building"></i></span>会社概要
+                </h2>
+                <div class="bg-slate-50 p-8 rounded-xl shadow-lg text-left">
+                    <!-- レスポンシブ対応のため、テーブルをdivに置き換え、flexboxでレイアウト -->
+                    <div class="md:grid md:grid-cols-[1fr_3fr] md:gap-x-4">
+                        <div class="flex flex-col md:col-span-2">
+                            <div class="md:grid md:grid-cols-4 md:gap-4 border-b border-gray-200 py-3">
+                                <div class="font-bold text-[#0B4F6C] mb-1 md:mb-0 md:col-span-1">会社名</div>
+                                <div class="md:col-span-3">電気保安法人 株式会社アーステスラ</div>
+                            </div>
+                            <div class="md:grid md:grid-cols-4 md:gap-4 border-b border-gray-200 py-3">
+                                <div class="font-bold text-[#0B4F6C] mb-1 md:mb-0 md:col-span-1">所在地</div>
+                                <div class="md:col-span-3">〒302-0127 茨城県守谷市松ヶ丘5-36-9 DASH松ヶ丘1F</div>
+                            </div>
+                            <div class="md:grid md:grid-cols-4 md:gap-4 border-b border-gray-200 py-3">
+                                <div class="font-bold text-[#0B4F6C] mb-1 md:mb-0 md:col-span-1">電話番号</div>
+                                <div class="md:col-span-3">TEL. 0297-21-6506(代表) / FAX. 0297-44-8776</div>
+                            </div>
+                            <div class="md:grid md:grid-cols-4 md:gap-4 border-b border-gray-200 py-3">
+                                <div class="font-bold text-[#0B4F6C] mb-1 md:mb-0 md:col-span-1">代表取締役</div>
+                                <div class="md:col-span-3">落合 将来</div>
+                            </div>
+                            <div class="md:grid md:grid-cols-4 md:gap-4 border-b border-gray-200 py-3">
+                                <div class="font-bold text-[#0B4F6C] mb-1 md:mb-0 md:col-span-1">設立</div>
+                                <div class="md:col-span-3">2020年8月19日</div>
+                            </div>
+                            <div class="md:grid md:grid-cols-4 md:gap-4 border-b border-gray-200 py-3">
+                                <div class="font-bold text-[#0B4F6C] mb-1 md:mb-0 md:col-span-1">資本金</div>
+                                <div class="md:col-span-3">500万円</div>
+                            </div>
+                            <div class="md:grid md:grid-cols-4 md:gap-4 border-b border-gray-200 py-3">
+                                <div class="font-bold text-[#0B4F6C] mb-1 md:mb-0 md:col-span-1">事業内容</div>
+                                <div class="md:col-span-3">
+                                    変電設備の保守･点検に関わる保安業務<br>
+                                    変電設備の工事に関わる建設業務<br>
+                                    労働安全衛生法に基づく特別教育講習
+                                </div>
+                            </div>
+                            <!-- ユーザーの指示に従い、許認可の情報を更新しました -->
+                            <div class="md:grid md:grid-cols-4 md:gap-4 py-3">
+                                <div class="font-bold text-[#0B4F6C] mb-1 md:mb-0 md:col-span-1">許認可</div>
+                                <div class="md:col-span-3">
+                                    電気保安法人 関東東北産業保安監督部 第H291号<br>
+                                    一般建設業(電) 茨城県知事許可(般-05)第38346号<br>
+                                    登録電気工事業者 茨城県(南)届出 第20230018号
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせフォームセクション -->
+        <section id="contact" class="py-16 md:py-24 bg-[#f4f8fb]">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold section-heading mx-auto mb-12">
+                    <span class="section-icon"><i class="fas fa-envelope"></i></span>お問い合わせ
+                </h2>
+                <p class="text-slate-600 mb-8">ご質問、ご相談など、お気軽にお問い合わせください。</p>
+                <div class="bg-white p-4 sm:p-8 rounded-xl shadow-lg text-left">
+                    <!-- Googleフォームをiframeで埋め込み -->
+                   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSePJdvS9cZsUQotwQppwJH3u23fM4STQSNKFOjYxYj-jBF42Q/viewform?embedded=true" class="google-form-iframe" loading="lazy"></iframe> 
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-bg-gradient text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">
+                &copy; 2024 電気保安法人 株式会社アーステスラ. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.jsの設定
+            const ctx = document.getElementById('businessChart').getContext('2d');
+            const data = {
+                labels: ['電気保安管理', '電気工事', '教育事業'],
+                datasets: [{
+                    // ユーザーの指示に従ってデータを変更
+                    data: [55, 40, 5],
+                    backgroundColor: ['#20A4F3', '#0B4F6C', '#5de0e6'],
+                    hoverBackgroundColor: ['#1c8acd', '#093a52', '#41c9cf']
+                }]
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#1e293b'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%',
+                    layout: {
+                        padding: 20
+                    }
+                }
+            };
+            
+            const businessChart = new Chart(ctx, config);
+
+            // ボタンによるチャートデータの更新
+            window.updateChart = function(type) {
+                if (type === 'future') {
+                    // 将来の展望データ (ユーザーの指示に従って更新)
+                    businessChart.data.datasets[0].data = [45, 35, 20];
+                    businessChart.data.labels = ['電気保安管理', '電気工事', '教育事業 (強化)'];
+                } else {
+                    // 現在の構成データ
+                    businessChart.data.datasets[0].data = [55, 40, 5];
+                    businessChart.data.labels = ['電気保安管理', '電気工事', '教育事業'];
+                }
+                businessChart.update();
+            };
+
+            // スクロール時のヘッダーの色の変更
+            const header = document.getElementById('header');
+            const heroSectionHeight = document.getElementById('hero').offsetHeight;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > heroSectionHeight - 80) {
+                    header.classList.remove('bg-white/80', 'backdrop-blur-md', 'shadow-sm');
+                    header.classList.add('bg-white', 'shadow-md');
+                } else {
+                    header.classList.add('bg-white/80', 'backdrop-blur-md', 'shadow-sm');
+                    header.classList.remove('bg-white', 'shadow-md');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
