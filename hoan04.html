@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電気保安法人 株式会社アーステスラ｜レスポンシブサイト</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- カスタムCSS: テーマカラーやレイアウトの調整 -->
+    <style>
+        /* スムーズスクロールを有効にする */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* フォントと基本の背景色、テキスト色を設定 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f8fb;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        
+        /* セクション見出しの共通スタイル */
+        .section-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #20A4F3;
+            padding-bottom: 0.5rem;
+        }
+        
+        /* セクション見出しのアイコン共通スタイル */
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+            color: #20A4F3;
+        }
+        
+        /* サービスカードのホバーアニメーション */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(32, 164, 243, 0.2);
+        }
+        
+        /* 新しい背景色（濃い青系） */
+        .bg-custom-navy {
+            background-color: #1a3a5f;
+        }
+
+        /* ナビゲーションバーのロゴサイズ */
+        .nav-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* ヘッダーの背景色変更 */
+        .header-transparent {
+            background-color: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
+        }
+        .header-solid {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        /* テキストグラデーション */
+        .text-gradient {
+            background-image: linear-gradient(to right, #004aad, #5de0e6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 新しいセクションのコンテナスタイル */
+        .info-card {
+            background-color: #eefaff; /* 非常に薄い青 */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem; /* p-6 */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* shadow-sm */
+            border-left: 4px solid #20A4F3;
+        }
+
+        /* 新しい見出しのスタイル */
+        .info-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .info-heading::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 8px;
+                height: 8px;
+                background-color: #20A4F3;
+                border-radius: 50%;
+        }
+
+        /* 新しい箇条書きのスタイル */
+        .info-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .info-list li::before {
+            content: '\2713'; /* チェックマーク */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #004aad;
+            font-weight: bold;
+        }
+
+        /* アーステスラ強調セクションのスタイル */
+        .highlight-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2.5rem 1.5rem; /* py-10 px-6 */
+            text-align: center;
+            border-radius: 1rem; /* rounded-2xl */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* 繋ぎの文章セクションのグラデーションを変更 */
+        .blue-gradient-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* アコーディオンアイテムの基本スタイル */
+        .accordion-item {
+            border-radius: 0.75rem;
+            background-color: #f4f8fb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        /* アコーディオンボタンのスタイル */
+        .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            color: #0B4F6C;
+            cursor: pointer;
+        }
+
+        /* アコーディオンボタンのアイコン（開閉用） */
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* アイコンのスタイル (開いている時) */
+        .accordion-button.open .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* アコーディオンコンテンツのスタイル */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+
+        /* コンテンツが開いている時のスタイル */
+        .accordion-content.open {
+            max-height: 1000px; /* 十分な高さを確保 */
+            padding-bottom: 1.5rem;
+        }
+
+        /* アコーディオンの見出しアイコン */
+        .accordion-heading-icon {
+            font-size: 1.5rem;
+            color: #20A4F3;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ==================== ナビゲーションバー ==================== -->
+    <header id="header" class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-start h-20">
+                <!-- ロゴ -->
+                <a href="#" class="flex items-center gap-2 shrink-0">
+                    <img src="https://earth-tesla.co.jp/wp-content/themes/EarthTesla_Theme/img/logo_wide.svg" alt="電気保安法人 株式会社アーステスラ ロゴ" class="nav-logo">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== メインコンテンツ ==================== -->
+    <main class="grow pt-20">
+        <!-- ==================== ヒーローセクション (レスポンシブ対応) ==================== -->
+        <section id="hero" class="relative text-white bg-custom-navy py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-wide">
+                        私たちのサービス
+                    </h1>
+                    <p class="text-xl sm:text-2xl mb-4 font-light">
+                        電気保安法人 株式会社アーステスラができること
+                    </p>
+                    <p class="text-base sm:text-lg max-w-3xl mb-8 opacity-90">
+                        私たちアーステスラは、建設業の電気に特化した<b>電気保安法人</b>です。電気の安定供給を支える「<b>電力インフラの安全を守る</b>」ことを使命とし、社会に貢献しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 自家用電気工作物の保安管理セクション (レスポンシブ対応) ==================== -->
+        <section id="security-management" class="py-16 md:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-xl sm:text-2xl md:text-3xl section-heading mx-auto mb-12 w-fit">
+                    <span class="section-icon"><i class="fas fa-tools"></i></span>自家用電気工作物の保安管理
+                </h2>
+                <div class="bg-slate-50 p-6 rounded-xl shadow-lg border-l-4 border-[#20A4F3] max-w-2xl mx-auto mb-8 text-left flex flex-col sm:flex-row items-start">
+                    <div class="text-2xl text-[#20A4F3] mr-4 mt-1 mb-2 sm:mb-0"><i class="fas fa-bolt"></i></div>
+                    <p class="text-base sm:text-lg text-slate-600">
+                        アーステスラが保安管理を行う意義は、電気設備の漏電や故障などのトラブルを未然に防ぎ、電気事故から人命と財産を守るためです。
+                    </p>
+                </div>
+                <!-- ここからデザインを変更したブロック -->
+                <div class="max-w-4xl mx-auto space-y-12 text-left">
+                    <!-- 項目7: 保安管理業務の内容 (レスポンシブ対応) -->
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-[#0B4F6C] mb-2 border-b-2 border-b-[#20A4F3] pb-1">
+                            保安管理業務の内容
+                        </h3>
+                        <p class="text-base text-slate-600 mb-4">
+                            電気保安法人としてアーステスラが行う保安管理業務の内容をピックアップして紹介します。
+                        </p>
+                        <ul class="list-none pl-0 text-base text-slate-600 space-y-4">
+                            <li class="p-4 rounded-lg bg-gray-100 shadow-sm">
+                                <div class="font-bold mb-1 flex items-center">
+                                    <span class="mr-2 text-[#20A4F3] font-black">●</span>保安規程の作成サポート
+                                </div>
+                                <p class="ml-6 text-sm sm:text-base">
+                                    電気事業法に基づく保安規程の作成、単線結線図など図面の作成、経済産業省保安監督部への申請手続き等、アーステスラでは、お客様の設備に合わせた保安規程の作成サポートから届け出まで、一貫してサポートしています。
+                                </p>
+                            </li>
+                            <li class="p-4 rounded-lg bg-gray-100 shadow-sm">
+                                <div class="font-bold mb-1 flex items-center">
+                                    <span class="mr-2 text-[#20A4F3] font-black">●</span>新設時の竣工検査
+                                </div>
+                                <p class="ml-6 text-sm sm:text-base">
+                                    電気設備の工事完了後、設備の絶縁性能や安全性が設計通り確保されているかを最終確認する、受電前の極めて重要な作業です。細部まで徹底的にチェックし、確かな安全性と信頼性を確保し、万全のサポートを行います。
+                                </p>
+                            </li>
+                            <li class="p-4 rounded-lg bg-gray-100 shadow-sm">
+                                <div class="font-bold mb-1 flex items-center">
+                                    <span class="mr-2 text-[#20A4F3] font-black">●</span>月次点検・年次点検
+                                </div>
+                                <p class="ml-6 text-sm sm:text-base">
+                                    経験豊富な電気主任技術者が定期的に点検を実施し、設備の安定稼働を見守ります。設備に異常があれば早期発見し、トラブルを未然に防ぎます。点検結果は報告書にまとめ、お客様に分かりやすくご説明します。
+                                </p>
+                            </li>
+                             <!-- 絶縁監視装置の項目を追加 -->
+                            <li class="p-4 rounded-lg bg-gray-100 shadow-sm">
+                                <div class="font-bold mb-1 flex items-center">
+                                    <span class="mr-2 text-[#20A4F3] font-black">●</span>絶縁監視装置
+                                </div>
+                                <p class="ml-6 text-sm sm:text-base">
+                                    絶縁監視装置とは、漏電を検知すると発報し、漏電通知が届く仕組みです。人がいない夜間や休日でも24時間365日監視するため、漏電を早期発見し、感電や火災等の重大事故を未然に防ぎます。アーステスラでは、お客様設備の安全安心を第一に、絶縁監視装置（本体定価38,500円）、取付工賃、通信費（年間7,000円）、経済産業省への申請手続き費は、無料サービスとしています。
+                                </p>
+                            </li>
+                            <li class="p-4 rounded-lg bg-gray-100 shadow-sm">
+                                <div class="font-bold mb-1 flex items-center">
+                                    <span class="mr-2 text-[#20A4F3] font-black">●</span>電気のトラブル・事故発生時の応動
+                                </div>
+                                <p class="ml-6 text-sm sm:text-base">
+                                    お客様が電気のことで何らかの異常や不安を感じたときは、いつでも連絡をください。専門の技術者が解消法を手ほどきいたします。絶縁監視装置の漏電発報や電気トラブルの場合は、専門の技術者が現場に急行し、トラブルの原因を突き止め、速やかに復旧することで、設備や事業への影響を最小限にとどめます。
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 変更後の繋ぎの文章セクション (レスポンシブ対応) -->
+                    <div class="blue-gradient-section py-8 px-4 sm:py-10 sm:px-6 rounded-2xl">
+                        <p class="text-base sm:text-lg lg:text-xl font-bold">
+                            これらの保安管理業務が必要なのは、お客様の電気設備が「自家用電気工作物」に該当し、法律で安全確保が義務付けられているためです。<br class="hidden sm:inline">自家用電気工作物とは何か、その安全を守るためのルールや役割を見ていきましょう。
+                        </p>
+                    </div>
+                    
+                    <!-- アコーディオンセクション開始 (レスポンシブ対応) -->
+                    <div class="max-w-4xl mx-auto space-y-4 text-left">
+                        <!-- アコーディオン項目1: 自家用電気工作物 -->
+                        <div class="accordion-item" id="accordion-1">
+                            <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-1">
+                                <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                    <span class="accordion-heading-icon"><i class="fas fa-bolt"></i></span>
+                                    <span>自家用電気工作物</span>
+                                </span>
+                                <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="accordion-content" id="content-1">
+                                <p class="text-sm sm:text-base text-slate-700">
+                                    自家用電気工作物とは、電力会社から電力を買って使用する施設のうち、特に安全管理が必要な規模の電気設備を指します。具体的には、家庭用で使う低電圧の電気ではなく、電圧が600Vを超える電気設備や発電設備がこれに該当します。これらは工場やビル、商業施設、病院、太陽光発電所などで用いられ、法律で安全な運用ルールが定められています。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- アコーディオン項目2: 設置者（事業者）の義務 -->
+                        <div class="accordion-item" id="accordion-2">
+                            <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-2">
+                                <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                    <span class="accordion-heading-icon"><i class="fas fa-user-tie"></i></span>
+                                    <span>設置者（事業者）の義務</span>
+                                </span>
+                                <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="accordion-content" id="content-2">
+                                <p class="text-sm sm:text-base text-slate-700">
+                                    自家用電気工作物の設置者（事業者）は、電気事業法に基づき、保安規程の作成と<b class="font-bold">電気主任技術者</b>の選任により、工事・維持・運用の保安確保が義務付けられています。これらには国への各種手続き・届出が必要で、怠ると罰則の対象となります。
+                                </p>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-4 px-4 py-2 border-l-2 border-l-[#20A4F3] bg-[#eefaff] rounded-md">
+                                    <b class="font-bold">電気主任技術者</b>とは、電気設備の工事、維持、運用を監督する国家資格を持った専門技術者です。電気主任技術者の業務は多岐にわたり、毎月・毎年行う各種点検、電気設備に関するアドバイス、そして設備の維持・運用に関するルールである保安規程の作成など、専門的な業務や複雑な手続きなどを担います。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- アコーディオン項目3: 電気主任技術者の選任方法 -->
+                        <div class="accordion-item" id="accordion-3">
+                            <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-3">
+                                <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                    <span class="accordion-heading-icon"><i class="fas fa-users-cog"></i></span>
+                                    <span>電気主任技術者の選任方法</span>
+                                </span>
+                                <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="accordion-content" id="content-3">
+                                <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                    設置者（事業者）による電気主任技術者の選任方法には、以下の2つがあります。
+                                </p>
+                                <ul class="list-none pl-0 text-sm sm:text-base text-slate-700 space-y-4">
+                                    <li class="relative pl-6">
+                                        <span class="absolute left-0 top-0 text-[#20A4F3] text-xl font-bold">①</span><span class="font-bold">自社選任（専任）</span>
+                                        <p class="ml-6 mt-1 text-xs sm:text-sm text-slate-600">
+                                            自社の従業員の中から、電気主任技術者免状を持つ者を選任する。
+                                        </p>
+                                    </li>
+                                    <li class="relative pl-6">
+                                        <span class="absolute left-0 top-0 text-[#20A4F3] text-xl font-bold">②</span><span class="font-bold">外部委託承認制度の利用</span>
+                                        <p class="ml-6 mt-1 text-xs sm:text-sm text-slate-600">
+                                            特別の条件を満たす場合、経済産業大臣の承認を得て、外部の電気保安法人や個人事業主の電気主任技術者に保安管理を委託する。
+                                        </p>
+                                    </li>
+                                </ul>
+                                <p class="text-sm sm:text-base text-slate-700 mt-4">
+                                    設置者（事業者）自身の電気設備の規模や種類、そして自社の人材状況に応じて、適切な方法で電気主任技術者を選任し、法的な手続きを遵守することが求められます。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- アコーディオン項目4: 電気主任技術者の外部委託承認制度 -->
+                        <div class="accordion-item" id="accordion-4">
+                            <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-4">
+                                <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                    <span class="accordion-heading-icon"><i class="fas fa-file-invoice"></i></span>
+                                    <span>電気主任技術者の外部委託承認制度</span>
+                                </span>
+                                <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="accordion-content" id="content-4">
+                                <p class="text-sm sm:text-base text-slate-700">
+                                    本来、自家用電気工作物の保安管理業務は、設置者（事業者）の責任で行い、電気主任技術者を選任し、維持・管理することが原則です。しかし、電気主任技術者を自社で確保することや、人件費などの負担が大きいため、外部の電気主任技術者に保安管理業務を委託できる<b class="font-bold">外部委託承認制度</b>が設けられています。これにより、設置者（事業者）の採用難や人件費の負担を軽減することができます。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- アコーディオン項目5: 電気主任技術者の外部委託先の選び方 -->
+                        <div class="accordion-item" id="accordion-5">
+                            <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-5">
+                                <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                    <span class="accordion-heading-icon"><i class="fas fa-balance-scale"></i></span>
+                                    <span>電気主任技術者の外部委託先の選び方</span>
+                                </span>
+                                <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="accordion-content" id="content-5">
+                                <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                    電気主任技術者を外部に委託する場合、主に電気保安法人と個人事業主である電気管理技術者の2つの選択肢があります。
+                                </p>
+                                <ul class="info-list list-none pl-0 text-sm sm:text-base text-slate-700 space-y-4">
+                                    <li>
+                                        <div class="font-bold">個人事業主（電気管理技術者）</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            一人の技術者が長く担当することが多いため、設備の特性を深く理解してもらいやすく、密なコミュニケーションが構築出来るといったメリットがある反面、担当者個人の技量に依存するため、サービスの質に差が出ることがあります。また、担当者が不在の場合、緊急時など、すぐに対応できないことがあります。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">電気保安法人（複数の電気主任技術者を雇用し、<b class="font-bold">組織</b>として保安管理業務を提供する法人）</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            経営基盤が安定しており、万が一の事故に備えた補償体制が整っている法人が多いです。また、担当者が不在でも、他の技術者がカバーできるため、緊急時や休日でも対応が可能です。さらに、社内で技術的な知識や経験を共有しているため、万が一のトラブルや複雑な問題にも対応することができます。
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 項目8: アーステスラ強調セクション (レスポンシブ対応) -->
+                    <div class="highlight-section max-w-2xl mx-auto rounded-2xl py-8 px-4 sm:py-10 sm:px-6">
+                        <p class="text-xl sm:text-2xl md:text-3xl font-bold tracking-wide">
+                            ➤ アーステスラは、経済産業省が定める要件を満たした電気保安法人です。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== フッター ==================== -->
+    <footer class="bg-custom-navy text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">
+                &copy; 2024 電気保安法人 株式会社アーステスラ. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==================== スクリプト ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // スクロール時のヘッダー背景色変更
+            const header = document.getElementById('header');
+            const heroSection = document.getElementById('hero');
+            if (heroSection) {
+                const heroSectionHeight = heroSection.offsetHeight;
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > heroSectionHeight - 80) {
+                        header.classList.add('header-solid');
+                        header.classList.remove('header-transparent');
+                    } else {
+                        header.classList.remove('header-solid');
+                        header.classList.add('header-transparent');
+                    }
+                });
+            } else {
+                // If hero section doesn't exist, make header solid by default
+                header.classList.add('header-solid');
+                header.classList.remove('header-transparent');
+            }
+
+            // アコーディオン機能
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const parentItem = button.closest('.accordion-item');
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('.accordion-icon');
+
+                    // 現在の状態をチェック
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                    // すべてのアコーディオンを閉じる
+                    accordionButtons.forEach(otherButton => {
+                        const otherParentItem = otherButton.closest('.accordion-item');
+                        const otherContent = otherButton.nextElementSibling;
+                        const otherIcon = otherButton.querySelector('.accordion-icon');
+
+                        otherButton.setAttribute('aria-expanded', 'false');
+                        otherContent.classList.remove('open');
+                        otherParentItem.style.borderLeftColor = 'transparent';
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    });
+
+                    // クリックしたアコーディオンを開く
+                    if (!isExpanded) {
+                        button.setAttribute('aria-expanded', 'true');
+                        content.classList.add('open');
+                        parentItem.style.borderLeftColor = '#20A4F3';
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
