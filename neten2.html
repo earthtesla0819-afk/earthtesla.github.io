@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電気保安法人 株式会社アーステスラ｜レスポンシブサイト</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- カスタムCSS: テーマカラーやレイアウトの調整 -->
+    <style>
+        /* スムーズスクロールを有効にする */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* フォントと基本の背景色、テキスト色を設定 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f8fb;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        
+        /* セクション見出しの共通スタイル */
+        .section-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* セクション見出しのメインタイトル */
+        .section-heading-main {
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #20A4F3;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* セクション見出しのアイコン共通スタイル */
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+            color: #20A4F3;
+        }
+        
+        /* サービスカードのホバーアニメーション */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(32, 164, 243, 0.2);
+        }
+        
+        /* 新しい背景色（濃い青系） */
+        .bg-custom-navy {
+            background-color: #1a3a5f;
+        }
+
+        /* ナビゲーションバーのロゴサイズ */
+        .nav-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* ヘッダーの背景色変更 */
+        .header-transparent {
+            background-color: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .header-solid {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        /* テキストグラデーション */
+        .text-gradient {
+            background-image: linear-gradient(to right, #004aad, #5de0e6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 新しいセクションのコンテナスタイル */
+        /* 背景色を入れ替えました */
+        .info-card {
+            background-color: #f4f8fb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+        }
+
+        /* 新しい見出しのスタイル */
+        .info-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .info-heading::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 8px;
+                height: 8px;
+                background-color: #20A4F3;
+                border-radius: 50%;
+        }
+
+        /* 新しい箇条書きのスタイル */
+        .info-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .info-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #004aad;
+            font-weight: bold;
+        }
+
+        /* アーステスラ強調セクションのスタイル */
+        .highlight-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* 繋ぎの文章セクションのグラデーションを変更 */
+        .blue-gradient-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* アコーディオンアイテムの基本スタイル */
+        /* 背景色を入れ替えました */
+        .accordion-item {
+            border-radius: 0.75rem;
+            background-color: #eefaff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        /* アクティブなアコーディオンの左ボーダー */
+        .accordion-item.active {
+            border-left-color: #20A4F3;
+        }
+
+        /* アコーディオンボタンのスタイル */
+        .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            color: #0B4F6C;
+            cursor: pointer;
+        }
+
+        /* アコーディオンボタンのアイコン（開閉用） */
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* アイコンのスタイル (開いている時) */
+        .accordion-button[aria-expanded="true"] .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* アコーディオンコンテンツのスタイル */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+
+        /* コンテンツが開いている時のスタイル */
+        .accordion-content.open {
+            max-height: 2000px; /* 十分に大きい値を設定 */
+            padding-bottom: 1.5rem;
+        }
+
+        /* アコーディオンの見出しアイコン */
+        .accordion-heading-icon {
+            font-size: 1.5rem;
+            color: #20A4F3;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+
+        /* 新しく追加した info-card-nested のスタイル */
+        /* 背景色を入れ替えました */
+        .info-card-nested {
+            background-color: #f4f8fb;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+            /* 余白を削減 */
+            padding: 0;
+        }
+
+        /* トップに戻るボタンのスタイル */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            /* 背景色とボーダーの色を画像の色に変更 */
+            background-color: #4671F6;
+            border: 2px solid #BAC9E5;
+            color: white;
+            border-radius: 9999px; /* Tailwind's full rounded-ness */
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+        
+        #scrollToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ネストされたアコーディオンのコンテンツの余白を縮小 */
+        .info-card-nested > .accordion-content.open {
+            padding: 0 0.75rem 0.75rem 0.75rem;
+        }
+        
+        /* ネストされたアコーディオンのボタンの余白を削減 */
+        .info-card-nested > .accordion-button {
+            padding: 0.75rem 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ==================== ナビゲーションバー ==================== -->
+    <header id="header" class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-start h-20">
+                <!-- ロゴ -->
+                <a href="#" class="flex items-center gap-2 shrink-0">
+                    <img src="https://earth-tesla.co.jp/wp-content/themes/EarthTesla_Theme/img/logo_wide.svg" alt="電気保安法人 株式会社アーステスラ ロゴ" class="nav-logo">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== メインコンテンツ ==================== -->
+    <main class="grow pt-20">
+        <!-- ==================== ヒーローセクション (レスポンシブ対応) ==================== -->
+        <section id="hero" class="relative text-white bg-custom-navy py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-wide">
+                        私たちのサービス
+                    </h1>
+                    <p class="text-xl sm:text-2xl mb-4 font-light">
+                        電気保安法人 株式会社アーステスラができること
+                    </p>
+                    <p class="text-base sm:text-lg max-w-3xl mb-8 opacity-90">
+                        私たちアーステスラは、建設業の電気に特化した<b>電気保安法人</b>です。電気の安定供給を支える「<b>電力インフラの安全を守る</b>」ことを使命とし、社会に貢献しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 自家用電気工作物の年次点検セクション (レスポンシブ対応) ==================== -->
+        <section id="security-management" class="py-16 md:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 見出しの変更 -->
+                <h2 class="section-heading mx-auto mb-12 w-fit">
+                    <div class="section-heading-main text-xl sm:text-2xl md:text-3xl">
+                        <span class="section-icon"><i class="fas fa-tools"></i></span>
+                        <span>自家用電気工作物の年次点検</span>
+                    </div>
+                    
+                </h2>
+                <!-- 説明文の変更 -->
+                <div class="bg-slate-50 p-6 rounded-xl shadow-lg border-l-4 border-[#20A4F3] max-w-2xl mx-auto mb-8 text-left flex flex-col sm:flex-row items-start">
+                    <div class="text-2xl text-[#20A4F3] mr-4 mt-1 mb-2 sm:mb-0"><i class="fas fa-bolt"></i></div>
+                    <!-- テキストを更新 -->
+                    <p class="text-base sm:text-lg text-slate-600">
+                        年次点検は1年に1回、電気設備を停電させて行う精密な点検です。普段見えない設備の内部を点検し、電気設備の安定稼働と健全性を確保します。
+                    </p>
+                </div>
+                
+                <!-- 新しく追加されたサブタイトル -->
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-700">年次点検</h3>
+                    <!-- 下線を変更 -->
+                    <div class="w-full h-1 bg-[#20A4F3] rounded-full my-2"></div>
+                </div>
+
+                <!-- アコーディオンセクション開始 (レスポンシブ対応) -->
+                <!-- イベント移譲のために、idを付与 -->
+                <div class="max-w-4xl mx-auto space-y-4 text-left" id="accordion-main-container">
+                    <!-- アコーディオン項目 (外観点検) -->
+                    <div class="accordion-item" id="accordion-0">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-0">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-search"></i></span>
+                                <span>外観点検</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-0">
+                            <!-- ここに新しい説明文を挿入 -->
+                            <p class="text-sm sm:text-base text-slate-700">
+                                <b class="font-bold">外観点検</b>とは、電気設備の外観に異常がないかどうか、目視や聴覚、嗅覚によって確認します。また、点検と合わせて、安全な状態を保つための清掃を行います。
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="font-bold text-base text-[#0B4F6C] mb-2">点検の目的</h4>
+                                <p class="text-sm sm:text-base text-slate-700">
+                                    外観点検の主な目的は、電気設備に起こりうる初期の異常や、視覚的に確認できる不具合を早期に発見することです。これにより、機器の故障や事故に発展するリスクを未然に防ぎ、設備の安全を確保します。
+                                </p>
+                            </div>
+                            <div class="info-card mt-4 p-4 space-y-2">
+                                <h4 class="font-bold text-base text-[#0B4F6C] mb-2">主な点検項目</h4>
+                                <ul class="list-none pl-0 text-sm sm:text-base text-slate-700 space-y-2">
+                                    <li>
+                                        <div class="font-bold">損傷・変色・腐食</div>
+                                        <!-- このテキストのフォントサイズが基準 -->
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            キュービクルの外箱や機器本体に、キズやへこみ、サビ、焼け焦げたような跡がないか確認します。特に変色や焼け焦げは、過熱やショートの兆候です。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">異音・異臭</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">変圧器から「ジー」といった異常な音がしたり、焦げ臭いにおいがしないかを確認します。</p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">緩み・脱落</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">接続部のボルトやナットが緩んでいないか、部品が外れていないかを目視で確認します。ケーブルが適切に固定されているかも重要です。</p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">汚損・結露</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">機器の表面にホコリや油が付着していないか、また、結露による水滴がないかを確認します。これらの汚損は、絶縁不良の原因となります。</p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">接地線の状態</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">接地線が適切に接続されているか、腐食や断線がないかを確認します。接地は感電防止に不可欠なため、特に重要な項目です。</p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">施錠の確認</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">キュービクルや配電盤の扉が確実に施錠されているか確認し、関係者以外が安易に触れることができないようにします。</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="text-sm sm:text-base text-slate-700 mt-4">
+                                これらの確認・点検・清掃作業は、私たちアーステスラの専門の技術者が五感を駆使し、責任を持って行います。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- アコーディオン項目 (接地抵抗測定) -->
+                    <div class="accordion-item" id="accordion-6">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-6">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-microscope"></i></span>
+                                <span>接地抵抗測定</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-6">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                <b>接地抵抗測定</b>とは、電気機器が電路からの漏電、漏洩、誘導などによって損傷するのを防ぎ、また、人や他の工作物の安全を確保するために施された接地工事が、技術基準に適合しているかを確認するための測定です。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                接地抵抗測定の目的は、感電や電気火災の防止と、ヒューズや遮断器などの保護装置が正常に動作することを確認することです。これにより、機器の異常時に電流を大地へ安全に逃がし、事故のリスクを低減します。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700">
+                                また、接地抵抗は温度や湿度、土壌の状態などによって変化するため、年次点検などで定期的に測定することが義務付けられています。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- アコーディオン項目 (絶縁抵抗測定) -->
+                    <div class="accordion-item" id="accordion-7">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-7">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-plug"></i></span>
+                                <span>絶縁抵抗測定</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-7">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                <b>電路（電線）や電気機器</b>は、使用している間に汚損や経年劣化によって絶縁性能が低下する「<b>絶縁劣化</b>」が進行します。この絶縁劣化は、最終的に漏電や短絡（ショート）を誘発し、感電や電気火災を引き起こすおそれがあります。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                特に高圧機器の絶縁劣化は、突然の機能停止を引き起こし、充電部が熱を帯び電気火災に発展する可能性が高まります。電気事故が起きると周辺機器まで焼損するなど、復旧には時間も費用もかかることになってしまいます。またその間、電気を使用することができず、事業的損失も発生します。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700">
+                                <b>絶縁抵抗測定</b>は、電線や機器の絶縁不良の兆候を早期に発見し、漏電や感電の危険性を評価することで、計画的な修繕や更新など保全工事対策に役立てることができます。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- アコーディオン項目 (保護継電器試験) -->
+                    <div class="accordion-item" id="accordion-8">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-8">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-shield-alt"></i></span>
+                                <span>保護継電器試験</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-8">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                電気設備では、経年劣化や外的要因による不測の事故が起こる可能性があります。こうした事故による被害を最小限に抑えるため、事前の備えが重要となります。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                不測の事態として、<b>「過電流」「短絡」「地絡」「絶縁破壊」「過・不足電圧」</b>といった異常が挙げられます。これらは頻繁に発生するものではありませんが、万が一に備える必要があります。そのため、電気設備には、<b>「保護継電器」と「遮断器」</b>を組み合わせた保護装置を設置します。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                <b>保護継電器</b>は、常に電力系統の状態を監視し、事故が発生した際に、その異常な箇所だけを検知します。そして、関連する<b>遮断器を作動させ</b>、事故が他の回路に波及するのを防ぐという、重要な役割を担っています。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700">
+                                この保護継電器が定められた性能を維持し、確実に作動するかを確認するために、<b>「保護継電器試験」</b>を実施します。この試験により、設備全体の安全性を確認することができます。
+                            </p>
+                            <!-- 小アコーディオン項目 (過電流)  -->
+                            <div class="accordion-item info-card-nested mt-4" id="accordion-nested-0">
+                                <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-nested-0">
+                                    <span class="flex items-center text-sm sm:text-base md:text-base font-bold text-[#0B4F6C]">
+                                        <span>用語：過電流（かでんりゅう）</span>
+                                    </span>
+                                    <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                                </button>
+                                <div class="accordion-content" id="content-nested-0">
+                                    <p class="text-xs sm:text-sm text-slate-700">
+                                        <b>状態：</b>電気が流れすぎている状態です。<br>
+                                        <b>原因：</b>規定以上の電気製品を同時に使ったり、モーターなどが故障したりして、電気が過剰に流れます。<br>
+                                        <b>結果：</b>電線や機器が熱を持ち、火災の原因になります。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 小アコーディオン項目 (短絡)  -->
+                            <div class="accordion-item info-card-nested mt-4" id="accordion-nested-1">
+                                <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-nested-1">
+                                    <span class="flex items-center text-sm sm:text-base md:text-base font-bold text-[#0B4F6C]">
+                                        <span>用語：短絡（たんらく）</span>
+                                    </span>
+                                    <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                                </button>
+                                <div class="accordion-content" id="content-nested-1">
+                                    <p class="text-xs sm:text-sm text-slate-700">
+                                        <b>状態：</b>電気が近道して流れている状態です。<br>
+                                        <b>原因：</b>2本の電線が何らかの原因（劣化、異物接触など）で直接触れ合うことで起こります。<br>
+                                        <b>結果：</b>異常な大電流が流れ、火花や爆発が発生します。火災の主な原因の一つです。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 小アコーディオン項目 (地絡)  -->
+                            <div class="accordion-item info-card-nested mt-4" id="accordion-nested-2">
+                                <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-nested-2">
+                                    <span class="flex items-center text-sm sm:text-base md:text-base font-bold text-[#0B4F6C]">
+                                        <span>用語：地絡（ちらく）</span>
+                                    </span>
+                                    <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                                </button>
+                                <div class="accordion-content" id="content-nested-2">
+                                    <p class="text-xs sm:text-sm text-slate-700">
+                                        <b>状態：</b>電気が地面に漏れている状態です。<br>
+                                        <b>原因：</b>電線の被覆（ビニールなど）が傷つき、電気が金属部分や地面を通じて漏れ出すことで起こります。<br>
+                                        <b>結果：</b>感電や漏電火災の原因になります。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 小アコーディオン項目 (絶縁破壊)  -->
+                            <div class="accordion-item info-card-nested mt-4" id="accordion-nested-3">
+                                <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-nested-3">
+                                    <span class="flex items-center text-sm sm:text-base md:text-base font-bold text-[#0B4F6C]">
+                                        <span>用語：絶縁破壊（ぜつえんはかい）</span>
+                                    </span>
+                                    <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                                </button>
+                                <div class="accordion-content" id="content-nested-3">
+                                    <p class="text-xs sm:text-sm text-slate-700">
+                                        <b>状態：</b>電線のカバーが破れている状態です。<br>
+                                        <b>原因：</b>経年劣化、熱、外部からの衝撃などで、電気を覆っている絶縁体（カバー）が本来の性能を失うことです。<br>
+                                        <b>結果：</b>短絡や地絡を引き起こし、感電や火災の原因になります。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 小アコーディオン項目 (過・不足電圧)  -->
+                            <div class="accordion-item info-card-nested mt-4" id="accordion-nested-4">
+                                <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-nested-4">
+                                    <span class="flex items-center text-sm sm:text-base md:text-base font-bold text-[#0B4F6C]">
+                                        <span>用語：過・不足電圧（か・ふそくでんあつ）</span>
+                                    </span>
+                                    <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                                </button>
+                                <div class="accordion-content" id="content-nested-4">
+                                    <p class="text-xs sm:text-sm text-slate-700">
+                                        <b>状態：</b>電気が勢い強すぎたり、弱すぎたりする状態です。<br>
+                                        <b>原因：</b>雷サージ（過電圧）や、変電所のトラブル（不足電圧）など。<br>
+                                        <b>結果：</b>電気機器が故障したり、正常に作動しなくなったりします。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- アコーディオン項目 (保護連動試験) -->
+                    <div class="accordion-item" id="accordion-9">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-9">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-microchip"></i></span>
+                                <span>保護連動試験</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-9">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                <b>保護連動試験</b>とは、電気設備に不測の事態が発生した際に、保護継電器が異常を検知した際、関連する遮断器や警報装置が、設定通りに正しく連動して作動するかを総合的に検証する試験です。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700">
+                                保護継電器や遮断器など、単体の機器が正常に機能しても、それらの連携がなければ、事故発生時に適切な保護が行われません。そのため、保護連動試験によって制御回路全体の健全性を確認し、電気設備の信頼性を高めることが不可欠です。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 新しいセクションの追加 -->
+                <div class="blue-gradient-section py-8 px-4 sm:py-10 sm:px-6 rounded-2xl max-w-4xl mx-auto mb-12 mt-12">
+                    <p class="text-base sm:text-lg lg:text-xl font-bold">
+                        年次点検を通じた「安全最高品質」こそ、私たちアーステスラの約束です。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-custom-navy text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">
+                &copy; 2025 電気保安法人 株式会社アーステスラ. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- トップに戻るボタン -->
+    <button id="scrollToTopBtn" class="bg-[#4671F6] border-2 border-[#BAC9E5] text-white rounded-full p-4 shadow-lg opacity-0 transition-opacity duration-300 ease-in-out hover:bg-[#3b5eaf]">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- アコーディオンとトップに戻るボタンのスクリプト -->
+    <script>
+        // アコーディオン機能
+        // イベント移譲（Event Delegation）を使用し、親要素にリスナーを登録
+        const accordionContainer = document.getElementById('accordion-main-container');
+
+        if (accordionContainer) {
+            accordionContainer.addEventListener('click', (event) => {
+                // クリックされた要素が.accordion-buttonか、その子孫要素かを確認
+                const button = event.target.closest('.accordion-button');
+                if (button) {
+                    try {
+                        const accordionItem = button.parentElement;
+                        const content = accordionItem.querySelector('.accordion-content');
+                        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                        if (isExpanded) {
+                            accordionItem.classList.remove('active');
+                            button.setAttribute('aria-expanded', 'false');
+                            content.classList.remove('open');
+                            // 親アコーディオンを閉じる際に、すべての子アコーディオンも閉じる
+                            const nestedAccordions = content.querySelectorAll('.accordion-item');
+                            nestedAccordions.forEach(nestedItem => {
+                                const nestedButton = nestedItem.querySelector('.accordion-button');
+                                const nestedContent = nestedItem.querySelector('.accordion-content');
+                                if (nestedButton && nestedButton.getAttribute('aria-expanded') === 'true') {
+                                    nestedItem.classList.remove('active');
+                                    nestedButton.setAttribute('aria-expanded', 'false');
+                                    nestedContent.classList.remove('open');
+                                }
+                            });
+                        } else {
+                            // クリックされたアコーディオンを開く
+                            accordionItem.classList.add('active');
+                            button.setAttribute('aria-expanded', 'true');
+                            content.classList.add('open');
+                        }
+                    } catch (error) {
+                        console.error('An error occurred during accordion functionality:', error);
+                    }
+                }
+            });
+        }
+
+        // トップに戻るボタン
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ヘッダーの透明度をスクロールで変更
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.remove('header-transparent');
+                header.classList.add('header-solid');
+            } else {
+                header.classList.add('header-transparent');
+                header.classList.remove('header-solid');
+            }
+        });
+
+        // 初期ロード時にヘッダーのスタイルを設定
+        if (window.scrollY > 50) {
+            header.classList.add('header-solid');
+        } else {
+            header.classList.add('header-transparent');
+        }
+    </script>
+</body>
+</html>
