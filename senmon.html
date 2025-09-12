@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電気保安法人 株式会社アーステスラ｜レスポンシブサイト</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- カスタムCSS: テーマカラーやレイアウトの調整 -->
+    <style>
+        /* スムーズスクロールを有効にする */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* フォントと基本の背景色、テキスト色を設定 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f8fb;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        
+        /* セクション見出しの共通スタイル */
+        .section-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* セクション見出しのメインタイトル */
+        .section-heading-main {
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #20A4F3;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* セクション見出しのアイコン共通スタイル */
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+            color: #20A4F3;
+        }
+        
+        /* サービスカードのホバーアニメーション */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(32, 164, 243, 0.2);
+        }
+        
+        /* 新しい背景色（濃い青系） */
+        .bg-custom-navy {
+            background-color: #1a3a5f;
+        }
+
+        /* ナビゲーションバーのロゴサイズ */
+        .nav-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* ヘッダーの背景色変更 */
+        .header-transparent {
+            background-color: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .header-solid {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        /* テキストグラデーション */
+        .text-gradient {
+            background-image: linear-gradient(to right, #004aad, #5de0e6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 新しいセクションのコンテナスタイル */
+        /* 背景色を入れ替えました */
+        .info-card {
+            background-color: #f4f8fb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+        }
+
+        /* 新しい見出しのスタイル */
+        .info-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .info-heading::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 8px;
+                height: 8px;
+                background-color: #20A4F3;
+                border-radius: 50%;
+        }
+
+        /* 新しい箇条書きのスタイル */
+        .info-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .info-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #004aad;
+            font-weight: bold;
+        }
+
+        /* アーステスラ強調セクションのスタイル */
+        .highlight-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* 繋ぎの文章セクションのグラデーションを変更 */
+        .blue-gradient-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* アコーディオンアイテムの基本スタイル */
+        /* 背景色を入れ替えました */
+        .accordion-item {
+            border-radius: 0.75rem;
+            background-color: #eefaff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        /* アクティブなアコーディオンの左ボーダー */
+        .accordion-item.active {
+            border-left-color: #20A4F3;
+        }
+
+        /* アコーディオンボタンの基本スタイル */
+        .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            color: #0B4F6C;
+            cursor: pointer;
+        }
+
+        /* アコーディオンボタンのアイコン（開閉用） */
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* アイコンのスタイル (開いている時) */
+        .accordion-button[aria-expanded="true"] .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* アコーディオンコンテンツのスタイル */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+
+        /* コンテンツが開いている時のスタイル */
+        .accordion-content.open {
+            max-height: 2000px; /* 十分に大きい値を設定 */
+            padding-bottom: 1.5rem;
+        }
+
+        /* アコーディオンの見出しアイコン */
+        .accordion-heading-icon {
+            font-size: 1.5rem;
+            color: #20A4F3;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+
+        /* 新しく追加した info-card-nested のスタイル */
+        /* 背景色を入れ替えました */
+        .info-card-nested {
+            background-color: #f4f8fb;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+            /* 余白を削減 */
+            padding: 0;
+        }
+
+        /* トップに戻るボタンのスタイル */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            /* 背景色とボーダーの色を画像の色に変更 */
+            background-color: #4671F6;
+            border: 2px solid #BAC9E5;
+            color: white;
+            border-radius: 9999px; /* Tailwind's full rounded-ness */
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            box-shadow: 4px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+        
+        #scrollToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ネストされたアコーディオンのコンテンツの余白を縮小 */
+        .info-card-nested > .accordion-content.open {
+            padding: 0 0.75rem 0.75rem 0.75rem;
+        }
+        
+        /* ネストされたアコーディオンのボタンの余白を削減 */
+        .info-card-nested > .accordion-button {
+            padding: 0.75rem 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ==================== ナビゲーションバー ==================== -->
+    <header id="header" class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-start h-20">
+                <!-- ロゴ -->
+                <a href="#" class="flex items-center gap-2 shrink-0">
+                    <img src="https://earth-tesla.co.jp/wp-content/themes/EarthTesla_Theme/img/logo_wide.svg" alt="電気保安法人 株式会社アーステスラ ロゴ" class="nav-logo">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== メインコンテンツ ==================== -->
+    <main class="grow pt-20">
+        <!-- ==================== ヒーローセクション (レスポンシブ対応) ==================== -->
+        <section id="hero" class="relative text-white bg-custom-navy py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-wide">
+                        私たちのサービス
+                    </h1>
+                    <p class="text-xl sm:text-2xl mb-4 font-light">
+                        電気保安法人 株式会社アーステスラができること
+                    </p>
+                    <p class="text-base sm:text-lg max-w-3xl mb-8 opacity-90">
+                        私たちアーステスラは、建設業の電気に特化した<b>電気保安法人</b>です。電気の安定供給を支える「<b>電力インフラの安全を守る</b>」ことを使命とし、社会に貢献しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 自家用電気工作物の年次点検セクション (レスポンシブ対応) ==================== -->
+        <section id="security-management" class="py-16 md:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 見出しの変更 -->
+                <h2 class="section-heading mx-auto mb-12 w-fit">
+                    <div class="section-heading-main text-xl sm:text-2xl md:text-3xl">
+                        <span class="section-icon"><i class="fas fa-tools"></i></span>
+                        <span>自家用電気工作物の高度な専門点検</span>
+                    </div>
+                    
+                </h2>
+                <!-- 説明文の変更 -->
+                <div class="bg-slate-50 p-6 rounded-xl shadow-lg border-l-4 border-[#20A4F3] max-w-2xl mx-auto mb-8 text-left flex flex-col sm:flex-row items-start">
+                    <div class="text-2xl text-[#20A4F3] mr-4 mt-1 mb-2 sm:mb-0"><i class="fas fa-bolt"></i></div>
+                    <!-- テキストを更新 -->
+                    <p class="text-base sm:text-lg text-slate-600">
+                        専門点検は、機器の内部に潜むわずかな劣化や異常の兆候を、特殊な試験機器と高度な技術で診断します。
+                    </p>
+                </div>
+                
+                <!-- 新しく追加されたサブタイトル -->
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-700">高度な専門点検</h3>
+                    <!-- 下線を変更 -->
+                    <div class="w-full h-1 bg-[#20A4F3] rounded-full my-2"></div>
+                </div>
+
+                <!-- アコーディオンセクション開始 (レスポンシブ対応) -->
+                <!-- イベント移譲のために、idを付与 -->
+                <div class="max-w-4xl mx-auto space-y-4 text-left" id="accordion-main-container">
+                    <!-- アコーディオン項目 (高圧真空遮断器 VCB) -->
+                    <div class="accordion-item" id="accordion-vcb">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-vcb">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-microchip"></i></span>
+                                <span>高圧真空遮断器 (VCB) の精密点検・特殊試験</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-vcb">
+                            <p class="text-sm sm:text-base text-slate-700">
+                                高圧遮断器には消弧媒体の違いにより、<b>真空遮断器（VCB）</b>、油遮断器（OCB）、磁気遮断器（MBB）、空気遮断器（ABB）、ガス断路器（GCB）などがあります。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700 mt-4">
+                                特に<b>VCB</b>は、火災の危険がなく、小型でメンテナンスしやすいことから、近年の高圧受電設備で広く採用されています。設備の健全性を維持するには、定期的な精密点検が不可欠です。
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="font-bold text-base text-[#0B4F6C] mb-2">主な点検項目</h4>
+                                <div class="info-card mt-2 p-4 space-y-2">
+                                    <ul class="list-none pl-0 text-sm sm:text-base text-slate-700 space-y-2">
+                                        <li>
+                                            <div class="font-bold">外観点検</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                発錆、腐食、外傷、絶縁物表面の汚れなどを確認し、清掃します。絶縁物の表面に<b>炭化導電路（トラッキング）</b>の痕跡がないかも重要なチェックポイントです。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="font-bold">絶縁抵抗測定</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                VCBの主回路（相間、対地間、異相間）の絶縁性能が正常に保たれているかを測定します。通常は<b>DC1000V</b>のメガーを使用し、<b>500MΩ以上</b>が目安です。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="font-bold">機構部の点検・注油</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                VCBの開閉動作を司る部分の摩耗や潤滑状態をチェックし、固着した油を除去・洗浄し、メーカー推奨の油を差します。
+                                            </p>
+                                        </li>
+                                         <!-- 新規追加: カウンターチェック -->
+                                        <li>
+                                            <div class="font-bold">カウンターチェック（回数指示計）</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                VCBの回数指示計は、開閉回数を数える装置で、メンテナンス時期の目安となります。この回数を実際の遮断器の状態と照らし合わせるカウンターチェックと合わせて確認することで、開閉回数だけではわからない機器の総合的な劣化状況を判断します。
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- 新しい小セクションの追加 -->
+                            <div class="mt-4">
+                                <h4 class="font-bold text-base text-[#0B4F6C] mb-2">精密点検に含まれる特殊試験</h4>
+                                <p class="text-sm sm:text-base text-slate-700 mb-2">
+                                    精密点検では、VCBの性能をより詳細に評価するため、特殊な試験器を用いた以下の試験が行われます。
+                                </p>
+                                <div class="info-card mt-2 p-4 space-y-2">
+                                    <ul class="list-none pl-0 text-sm sm:text-base text-slate-700 space-y-2">
+                                        <li>
+                                            <div class="font-bold">真空バルブ耐圧試験（真空バルブチェック）</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                VCBチェッカを用いて高電圧をかけ、<b>真空バルブが正常な状態かを確認</b>する重要な試験です。長年の使用で真空度が低下すると絶縁性能も低下し、アーク（放電）が消えにくくなり、機器の損傷や事故の原因となります。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="font-bold">開極時間測定・閉極時間測定</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                タイミングチェッカ・開閉装置を用いて、VCBの回路を<b>投入（閉極）</b>または<b>遮断（開極）</b>するのに<b>要する時間を精密に測定</b>します。この時間が規定値から外れると、事故発生時の遮断不良や過電圧サージの発生につながる可能性があります。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="font-bold">三相不揃い時間測定</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                タイミングチェッカ・開閉装置を用いて、VCBの開閉時に<b>3つの相（R、S、T）の接点が同時に動作しているかを確認</b>する重要な試験です。この試験は、機械的な摩耗などによる開閉タイミングに大きなズレがないかを確認するために行います。大きなズレが生じると、放電（アーク）や不均衡な電流が流れ、VCBや接続機器の故障につながる可能性があります。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="font-bold">最小動作電圧試験</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                電圧試験器・開閉装置を用いて、VCBを確実に動作させるための<b>最小動作電圧を確認</b>します。この最小動作電圧値が高いと、制御電源源の電圧降下時にVCBが動作せず、事故時に回路を遮断できないリスクが生じます。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="font-bold">接触抵抗測定</div>
+                                            <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                                コンタクトチェッカを用いて、VCBが投入された状態での<b>接点部の抵抗を測定</b>します。抵抗が大きいと、発熱して事故の原因となります。
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- 移動されたテキスト -->
+                            <p class="text-sm sm:text-base text-slate-700 mt-4">
+                                これらの精密点検・特殊試験は、VCBの長期的な安全性と信頼性を確保するために不可欠です。多くのメーカー・規格で、<b>6年</b>ごとの周期が定められており、普通点検と精密点検を重ねて<b>異常兆候を早期に発見</b>します。なお、設置環境にもよりますが、<b>製造後20年が更新の目安</b>とされています。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 新規追加セクション: 絶縁耐力試験（直流・交流） -->
+                    <div class="accordion-item" id="accordion-insulation-test">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-insulation-test">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-gavel"></i></span>
+                                <span>絶縁耐力試験</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-insulation-test">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                <b>絶縁耐力試験</b>は、感電や電気火災事故を未然に防ぐことを目的に、電気設備の絶縁部分が、使用電圧だけでなく、<b>事故時の高電圧にも耐えられるか</b>を厳密に確認する重要な試験です。
+                            </p>
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                この試験では、使用電圧に応じた特定の試験電圧を、対象となる電気設備に10分間印加します。印加中に<b>絶縁が破壊</b>されたり、許容値を超える<b>漏れ電流</b>が流れたりしないかを確認することで、その絶縁が十分な強度を持っているかを判断します。
+                            </p>
+                             <!-- 新しい小セクションの追加 -->
+                            <div class="mt-4">
+                                <h4 class="font-bold text-base text-[#0B4F6C] mb-2">試験電圧の計算例（6,600Vの場合）</h4>
+                                <div class="info-card-nested mt-2 p-4 space-y-2">
+                                    <p class="text-xs sm:text-sm text-slate-600">
+                                        使用電圧6,600Vの機器の場合、最大使用電圧（約6,900V）の1.5倍である約10,350Vを印加します。高圧ケーブルを直流で行う場合は、交流試験電圧の2倍の直流電圧を印加します。
+                                    </p>
+                                    <p class="ml-4 text-xs sm:text-sm text-slate-600 mt-2">
+                                        最大使用電圧：6,600V × 1.15 ÷ 1.1 = 約6,900V<br>
+                                        　試験電圧　：6,900V × 1.5 = 10,350V
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 新規追加セクション: 高圧ケーブル絶縁劣化診断 -->
+                    <div class="accordion-item" id="accordion-cable">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-cable">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-cable-car"></i></span>
+                                <span>高圧ケーブル絶縁劣化診断</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-cable">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                <b>高圧ケーブルの絶縁劣化診断</b>は、高圧ケーブルの絶縁性能および健全性を正確に評価するために不可欠な診断です。
+                            </p>
+                            <h4 class="font-bold text-base text-[#0B4F6C] mb-2">主な診断方法</h4>
+                            <div class="info-card mt-2 p-4 space-y-2">
+                                <ul class="list-none pl-0 text-sm sm:text-base text-slate-700 space-y-2">
+                                    <li>
+                                        <div class="font-bold">絶縁抵抗測定（G端子接地法）</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            高電圧絶縁抵抗計（主に5,000V〜10,000V）を用いて、G端子接地方式でケーブル単体の絶縁抵抗を測定します。複数の異なる電圧を一定時間（5〜10分）印加し、漏れ電流の変化を記録することで、ケーブルの健全性を総合的に判定します。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">直流漏れ電流法</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            高圧直流電圧をケーブルに印加し、その際に流れる漏れ電流の値と時間ごとの変化を観測します。この漏れ電流の特性を調べることで、絶縁体の劣化状態を詳細に診断します。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">弱点比・成極比判定</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            以下の比率を計算することで、絶縁の劣化をより明確に捉えることができます。
+                                        </p>
+                                        <div class="info-card-nested mt-2 p-4 space-y-2">
+                                            <ul class="list-none pl-0 text-xs sm:text-sm text-slate-700 space-y-2">
+                                                <li>
+                                                    <div class="font-bold">弱点比＝低電圧測定値／高電圧測定値</div>
+                                                    <p class="ml-4 text-xs sm:text-sm text-slate-600">
+                                                        健全なケーブルでは比率が一定ですが、劣化があると大きく変動します。
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <div class="font-bold">成極比＝印加直後漏れ電流／最終漏れ電流</div>
+                                                    <p class="ml-4 text-xs sm:text-sm text-slate-600">
+                                                        健全なケーブルでは一定の比率を示しますが、劣化に伴い数値が大きく変化します。
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="text-sm sm:text-base text-slate-700 mt-4">
+                                これらの精密な診断を通じて、高圧ケーブルの隠れた劣化を早期発見し、事故を未然に防ぐための更新計画に役立てることが出来ます。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 修正されたセクション: 絶縁油試験 -->
+                    <div class="accordion-item" id="accordion-insulation-oil">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-insulation-oil">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-oil-can"></i></span>
+                                <span>絶縁油試験</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-insulation-oil">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                変圧器の<b>絶縁油</b>は、電気を絶縁し、機器を冷却する重要な役割を担っていますが、長年の使用で劣化します。もし絶縁油が劣化すると、絶縁性能が低下して、機器の故障や事故の原因となるため、定期的な試験が必要です。
+                            </p>
+                            <h4 class="font-bold text-base text-[#0B4F6C] mb-2">主な試験項目</h4>
+                            <div class="info-card mt-2 p-4 space-y-2">
+                                <ul class="list-none pl-0 text-sm sm:text-base text-slate-700 space-y-2">
+                                    <li>
+                                        <div class="font-bold">絶縁破壊電圧試験</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            絶縁油に高電圧をかけて、<b>絶縁が破壊されるまでの電圧値を測定</b>します。この値が低いほど、絶縁油の絶縁性能が劣っていると判断されます。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">酸価試験</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            <b>変圧器の絶縁油に含まれる酸性物質の量を測定</b>することで、絶縁油の酸化劣化の度合いを評価する試験であり、劣化が進行するとコイルや鉄心への付着による内部劣化や、ラジエーターへの付着による冷却効率の低下とそれに伴う温度上昇を引き起こし、変圧器全体の熱劣化を加速させるため、定期的な監視が不可欠です。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">油中ガス分析試験</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            <b>絶縁油から微量に発生したガスを採取・分析する</b>ことで、目に見えない機器内部の異常を早期に発見するための試験です。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">水分量試験</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            <b>油に含まれる水分の量を測定</b>します。水分が多いと、絶縁性能が低下します。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">体積抵抗率試験</div>
+                                        <p class="ml-6 text-xs sm:text-sm text-slate-600">
+                                            体積抵抗率とは、<b>電気の流れにくさ（電気抵抗）</b>を<b>体積単位で表したもの</b>で、「どれだけ電気を流さないか」を示す重要な特性値です。単位は「Ω・cm」（ｵｰﾑｾﾝﾁﾒｰﾄﾙ）や「Ω・m」（ｵｰﾑﾒｰﾄﾙ）で表されます。
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="text-sm sm:text-base text-slate-700 mt-4">
+                                絶縁油の試験周期は、油の状態が<b>正常</b>であれば<b>3年</b>ごと、<b>要監視範囲</b>なら<b>1年</b>ごと、そして<b>要処置範囲</b>なら<b>絶縁油の交換や再生を行う</b>ことが推奨されます。異常が認められた場合は、周期を短くして試験を実施することが推奨されます。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 新しいセクションの追加 -->
+                <div class="blue-gradient-section py-8 px-4 sm:py-10 sm:px-6 rounded-2xl max-w-4xl mx-auto mb-12 mt-12">
+                    <p class="text-base sm:text-lg lg:text-xl font-bold">
+                        高度な専門点検を通じた「安全最高品質」こそ、私たちアーステスラの約束です。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-custom-navy text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">
+                &copy; 2025 電気保安法人 株式会社アーステスラ. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- トップに戻るボタン -->
+    <button id="scrollToTopBtn" class="bg-[#4671F6] border-2 border-[#BAC9E5] text-white rounded-full p-4 shadow-lg opacity-0 transition-opacity duration-300 ease-in-out hover:bg-[#3b5eaf]">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- アコーディオンとトップに戻るボタンのスクリプト -->
+    <script>
+        // アコーディオン機能
+        // イベント移譲（Event Delegation）を使用し、親要素にリスナーを登録
+        const accordionContainer = document.getElementById('accordion-main-container');
+
+        if (accordionContainer) {
+            accordionContainer.addEventListener('click', (event) => {
+                // クリックされた要素が.accordion-buttonか、その子孫要素かを確認
+                const button = event.target.closest('.accordion-button');
+                if (button) {
+                    try {
+                        const accordionItem = button.parentElement;
+                        const content = accordionItem.querySelector('.accordion-content');
+                        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                        if (isExpanded) {
+                            accordionItem.classList.remove('active');
+                            button.setAttribute('aria-expanded', 'false');
+                            content.classList.remove('open');
+                            // 親アコーディオンを閉じる際に、すべての子アコーディオンも閉じる
+                            const nestedAccordions = content.querySelectorAll('.accordion-item');
+                            nestedAccordions.forEach(nestedItem => {
+                                const nestedButton = nestedItem.querySelector('.accordion-button');
+                                const nestedContent = nestedItem.querySelector('.accordion-content');
+                                if (nestedButton && nestedButton.getAttribute('aria-expanded') === 'true') {
+                                    nestedItem.classList.remove('active');
+                                    nestedButton.setAttribute('aria-expanded', 'false');
+                                    nestedContent.classList.remove('open');
+                                }
+                            });
+                        } else {
+                            // クリックされたアコーディオンを開く
+                            accordionItem.classList.add('active');
+                            button.setAttribute('aria-expanded', 'true');
+                            content.classList.add('open');
+                        }
+                    } catch (error) {
+                        console.error('An error occurred during accordion functionality:', error);
+                    }
+                }
+            });
+        }
+
+        // トップに戻るボタン
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ヘッダーの透明度をスクロールで変更
+        const header = document.getElementById('header');
+        
+        // ページ読み込み時にヘッダーを透明に設定
+        window.onload = () => {
+            header.classList.add('header-transparent');
+        };
+        
+        // スクロール時にヘッダーのスタイルを変更
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.remove('header-transparent');
+                header.classList.add('header-solid');
+            } else {
+                header.classList.remove('header-solid');
+                header.classList.add('header-transparent');
+            }
+        });
+
+    </script>
+</body>
+</html>
