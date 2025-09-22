@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電気保安法人 株式会社アーステスラ｜レスポンシブサイト</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- カスタムCSS: テーマカラーやレイアウトの調整 -->
+    <style>
+        /* スムーズスクロールを有効にする */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* フォントと基本の背景色、テキスト色を設定 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f8fb;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        
+        /* セクション見出しの共通スタイル */
+        .section-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* セクション見出しのメインタイトル */
+        .section-heading-main {
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #20A4F3;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* セクション見出しのアイコン共通スタイル */
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+            color: #20A4F3;
+        }
+        
+        /* サービスカードのホバーアニメーション */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(32, 164, 243, 0.2);
+        }
+        
+        /* 新しい背景色（濃い青系） */
+        .bg-custom-navy {
+            background-color: #1a3a5f;
+        }
+
+        /* ナビゲーションバーのロゴサイズ */
+        .nav-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* ヘッダーのスクロール時のスタイル */
+        .header-scrolled {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        /* 新しいセクションのコンテナスタイル */
+        /* 背景色を入れ替えました */
+        .info-card {
+            background-color: #f4f8fb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+        }
+
+        /* 新しい見出しのスタイル */
+        .info-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .info-heading::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 8px;
+                height: 8px;
+                background-color: #20A4F3;
+                border-radius: 50%;
+        }
+
+        /* 新しい箇条書きのスタイル */
+        .info-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .info-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #004aad;
+            font-weight: bold;
+        }
+
+        /* 繋ぎの文章セクションのグラデーションを変更 */
+        .blue-gradient-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* アコーディオンアイテムの基本スタイル */
+        /* 背景色を入れ替えました */
+        .accordion-item {
+            border-radius: 0.75rem;
+            background-color: #eefaff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        /* アクティブなアコーディオンの左ボーダー */
+        .accordion-item.active {
+            border-left-color: #20A4F3;
+        }
+
+        /* アコーディオンボタンのスタイル */
+        .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            color: #0B4F6C;
+            cursor: pointer;
+        }
+
+        /* アコーディオンボタンのアイコン（開閉用） */
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* アイコンのスタイル (開いている時) */
+        .accordion-button[aria-expanded="true"] .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* アコーディオンコンテンツのスタイル */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+
+        /* コンテンツが開いている時のスタイル */
+        .accordion-content.open {
+            max-height: 2000px; /* 十分に大きい値を設定 */
+            padding-bottom: 1.5rem;
+        }
+
+        /* アコーディオンの見出しアイコン */
+        .accordion-heading-icon {
+            font-size: 1.5rem;
+            color: #20A4F3;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+
+        /* 新しく追加した info-card-nested のスタイル */
+        /* 背景色を入れ替えました */
+        .info-card-nested {
+            background-color: #f4f8fb;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+            /* 余白を削減 */
+            padding: 0;
+        }
+        
+        /* 小セクション（危険予知、装備など）の新しいスタイル */
+        /* 背景色を「主な管理項目」と同じに変更 */
+        .safe-management-section {
+            border-radius: 0.75rem;
+            background-color: #f4f8fb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+            padding: 1rem 1.5rem;
+        }
+        
+        /* 小セクションの見出し */
+        .safe-management-heading {
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        /* トップに戻るボタンのスタイル */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            /* 背景色とボーダーの色を画像の色に変更 */
+            background-color: #4671F6;
+            border: 2px solid #BAC9E5;
+            color: white;
+            border-radius: 9999px; /* Tailwind's full rounded-ness */
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+        
+        #scrollToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ネストされたアコーディオンのコンテンツの余白を縮小 */
+        .info-card-nested > .accordion-content.open {
+            padding: 0 0.75rem 0.75rem 0.75rem;
+        }
+        
+        /* ネストされたアコーディオンのボタンの余白を削減 */
+        .info-card-nested > .accordion-button {
+            padding: 0.75rem 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ==================== ナビゲーションバー ==================== -->
+    <header id="header" class="bg-white/0 backdrop-blur-none shadow-none fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-start h-20">
+                <!-- ロゴ -->
+                <a href="#" class="flex items-center gap-2 shrink-0">
+                    <img src="https://earth-tesla.co.jp/wp-content/themes/EarthTesla_Theme/img/logo_wide.svg" alt="電気保安法人 株式会社アーステスラ ロゴ" class="nav-logo">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== メインコンテンツ ==================== -->
+    <main class="grow pt-20">
+        <!-- ==================== ヒーローセクション (レスポンシブ対応) ==================== -->
+        <section id="hero" class="relative text-white bg-custom-navy py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-wide">
+                        私たちのサービス
+                    </h1>
+                    <p class="text-xl sm:text-2xl mb-4 font-light">
+                        電気保安法人 株式会社アーステスラができること
+                    </p>
+                    <p class="text-base sm:text-lg max-w-3xl mb-8 opacity-90">
+                        私たちアーステスラは、建設業の電気に特化した<b>電気保安法人</b>です。電気の安定供給を支える「<b>電力インフラの安全を守る</b>」ことを使命とし、社会に貢献しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 自家用電気工作物の年次点検セクション (レスポンシブ対応) ==================== -->
+        <section id="security-management" class="py-16 md:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 見出しの変更 -->
+                <h2 class="section-heading mx-auto mb-12 w-fit">
+                    <div class="section-heading-main text-xl sm:text-2xl md:text-3xl">
+                        <span class="section-icon"><i class="fas fa-tools"></i></span>
+                        <span>自家用電気工作物の年次点検（管理編）</span>
+                    </div>
+                    
+                </h2>
+                <!-- 説明文の変更 -->
+                <div class="bg-slate-50 p-6 rounded-xl shadow-lg border-l-4 border-[#20A4F3] max-w-2xl mx-auto mb-8 text-left flex flex-col sm:flex-row items-start">
+                    <div class="text-2xl text-[#20A4F3] mr-4 mt-1 mb-2 sm:mb-0"><i class="fas fa-bolt"></i></div>
+                    <!-- テキストを更新 -->
+                    <p class="text-base sm:text-lg text-slate-600">
+                        複数箇所にわたる大規模施設の年次点検は、大人数での連携が鍵となります。私たちは、綿密な事前計画と安全管理、そして明確な指揮系統に基づき、安全と安心を備えた年次点検を実現します。
+                    </p>
+                </div>
+                
+                <!-- 新しく追加されたサブタイトル -->
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-700">私たちが大切にする３つの管理（工程・安全・品質）</h3>
+                    <!-- 下線を変更 -->
+                    <div class="w-full h-1 bg-[#20A4F3] rounded-full my-2"></div>
+                </div>
+
+                <!-- アコーディオンセクション開始 (レスポンシブ対応) -->
+                <!-- イベント移譲のために、idを付与 -->
+                <div class="max-w-4xl mx-auto space-y-4 text-left" id="accordion-main-container">
+                    <!-- アコーディオン項目 (工程管理)  -->
+                    <div class="accordion-item" id="accordion-1">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-1">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-list-check"></i></span>
+                                <span>工程管理（スケジュールと進捗）</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-1">
+                            
+                            <!-- 変更点: 太字表記を「工程管理」のみに変更 -->
+                            <p class="text-sm sm:text-base text-slate-700">
+                                <b>工程管理</b>は、点検が計画通りに、かつ効率的に進むように管理します。
+                            </p>
+                            <div class="info-card mt-4 p-4 space-y-2">
+                                <!-- 変更点: ここから下のフォントサイズを統一 -->
+                                <h4 class="font-bold text-sm text-[#0B4F6C] mb-2">主な管理項目</h4>
+                                <ul class="list-none pl-0 text-sm sm:text-base text-slate-700 space-y-2">
+                                    <li>
+                                        <div class="font-bold">事前準備</div>
+                                        <p class="ml-6 text-slate-600">
+                                            作業内容、作業時間、求められる技量、人員数、使用する機材を事前にリストアップし、関係者全員で共有します。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <!-- 変更点: 見出しを「作業範囲の確認」に変更し、太字表記にする -->
+                                        <div class="font-bold">作業範囲の確認</div>
+                                        <p class="ml-6 text-slate-600">
+                                            停電範囲や作業範囲の確認を行います。また停電の影響を受けるすべての関係者と調整を行います。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">進捗管理</div>
+                                        <p class="ml-6 text-slate-600">
+                                            点検中の各作業が計画通りに進んでいるかの確認を行います。一部作業に遅れが生じている場合は作業責任者に確認をとり、チーム内で補填・助け合います。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="font-bold">顧客連携</div>
+                                        <p class="ml-6 text-slate-600">
+                                            顧客への事前通知や当日の進行状況を報告します。復旧時間の厳守も徹底します。
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 変更点: アコーディオン項目 (安全管理) の内容を修正 -->
+                    <div class="accordion-item" id="accordion-safety">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-safety">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-shield-alt"></i></span>
+                                <span>安全管理（リスクと事故防止）</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-safety">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                <b>安全管理</b>は、現場の命綱です。見えない危険を可視化し、徹底した安全対策を講じることで、事故を未然に防ぎ、作業員はもちろん、関係者全ての財産と人命を守ります。
+                            </p>
+                            
+                            <!-- 変更点: 新しい small-section のコンテナ -->
+                            <div class="safe-management-section mt-4 space-y-4">
+                                <!-- 変更点: 危険予知（KY活動）の見出しを修正 -->
+                                <div>
+                                    <h4 class="safe-management-heading text-sm sm:text-base">KY活動</h4>
+                                    <p class="text-sm sm:text-base text-slate-700">作業現場に潜む危険（感電、短絡など）を作業員全員で共有し、対策を立てます。</p>
+                                </div>
+                                
+                                <!-- 変更点: 子アコーディオンの位置を移動 -->
+                                <div class="accordion-item info-card-nested" id="accordion-nested-ky">
+                                    <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-nested-ky">
+                                        <span class="flex items-center text-sm sm:text-base md:text-base font-bold text-[#0B4F6C]">
+                                            <!-- 変更点: 見出しを「KY活動とは」に更新 -->
+                                            <span>KY活動とは</span>
+                                        </span>
+                                        <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                                    </button>
+                                    <div class="accordion-content" id="content-nested-ky">
+                                        <p class="text-xs sm:text-sm text-slate-700 mb-2">
+                                            <!-- 変更点: 説明文を「KY活動とは「危険予知活動」の略。」に更新 -->
+                                            <b>KY活動</b>とは「危険予知活動」の略。危険箇所を洗い出し、事故防止策について話し合うための重要なミーティング活動のことです。
+                                        </p>
+                                        <p class="text-xs sm:text-sm text-slate-700 mb-2">
+                                            <b>作業の危険箇所の特定</b><br>
+                                            感電、転倒、接触などの潜在的なリスクを洗い出します。
+                                        </p>
+                                        <p class="text-xs sm:text-sm text-slate-700 mb-2">
+                                            <b>事故防止策の共有</b><br>
+                                            どのような対策をとるか、具体的な行動や注意点を共有します。
+                                        </p>
+                                        <p class="text-xs sm:text-sm text-slate-700 mb-2">
+                                            <b>作業手順の確認</b><br>
+                                            決められた作業手順や作業方法を確認します。
+                                        </p>
+                                        <p class="text-xs sm:text-sm text-slate-700 mb-2">
+                                            <b>役割分担の確認</b><br>
+                                            一人ひとりの役割を明確にし、技術員を適正配置します。
+                                        </p>
+                                        <p class="text-xs sm:text-sm text-slate-700">
+                                            <b>指差し呼称の実施</b><br>
+                                            「足元、ヨシ！」のように指差しと声出しを組み合わせることで、誤操作を防止します。
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- 変更点: 装備、作業場の安全確保、手順、緊急時対応を一つのコンテナ内にまとめる -->
+                                <div>
+                                    <h4 class="safe-management-heading text-sm sm:text-base">
+                                        <!-- 変更点: 太字の表記を追加 -->
+                                        <b>安全装備の確認</b>
+                                    </h4>
+                                    <!-- 変更点: テキストの内容を変更 -->
+                                    <p class="text-sm sm:text-base text-slate-700">
+                                        ヘルメット、作業服、作業手袋、リストアラーム、検電器、安全靴、安全帯等を適正に着用しているか確認をします。
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="safe-management-heading text-sm sm:text-base">作業場の安全確保</h4>
+                                    <!-- 変更点: テキストの内容をご依頼いただいた内容に更新 -->
+                                    <p class="text-sm sm:text-base text-slate-700">
+                                        使用する機材を原則１箇所にまとめて使用しやすい状態にします。作業場が散らかっている場合は整頓し、作業場の安全を確保します。
+                                    </p>
+                                </div>
+                                <div>
+                                    <!-- 変更点: 見出しを「作業手順の遵守」に変更 -->
+                                    <h4 class="safe-management-heading text-sm sm:text-base">作業手順の遵守</h4>
+                                    <!-- 変更点: テキストの内容をご依頼いただいた内容に更新 -->
+                                    <p class="text-sm sm:text-base text-slate-700">
+                                        計画した作業手順に沿って作業を実施しているか管理監督します。
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="safe-management-heading text-sm sm:text-base">緊急時対応</h4>
+                                    <p class="text-sm sm:text-base text-slate-700">
+                                        万が一の事故に備え、応急処置や連絡体制を事前に確認します。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 新しいアコーディオン項目 (品質管理) を追加 -->
+                    <div class="accordion-item" id="accordion-quality">
+                        <button class="accordion-button flex-shrink-0" aria-expanded="false" aria-controls="content-quality">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-clipboard-check"></i></span>
+                                <!-- 変更点: 見出しを「品質管理（正確さと信頼性）」に更新 -->
+                                <span>品質管理（正確さと信頼性）</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="accordion-content" id="content-quality">
+                            <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                <b>品質管理</b>とは信頼の証です。点検結果の正確さを確保するため、精密なデータ測定と詳細な報告書作成を通じて、信頼性の高い結果報告を提供できるよう管理します。
+                            </p>
+                            
+                            <!-- 新しい小セクションのコンテナ -->
+                            <div class="safe-management-section mt-4 space-y-4">
+                                <!-- 変更点: ここから下のフォントサイズを統一 -->
+                                <div>
+                                    <h4 class="safe-management-heading text-sm sm:text-base">点検項目</h4>
+                                    <p class="text-sm sm:text-base text-slate-700">
+                                        技術基準や顧客との間で定められた点検項目をすべて網羅しているかを確認します。
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="safe-management-heading text-sm sm:text-base">測定値の正確性</h4>
+                                    <p class="text-sm sm:text-base text-slate-700">
+                                        試験器・測定器は校正されたものを使用しているか、また測定値が基準値内であるかを確認します。
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="safe-management-heading text-sm sm:text-base">報告書の作成</h4>
+                                    <p class="text-sm sm:text-base text-slate-700">
+                                        点検結果や不具合の有無、測定データを正確に記録し、詳細な報告書を作成します。
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="safe-management-heading text-sm sm:text-base">データ管理</h4>
+                                    <p class="text-sm sm:text-base text-slate-700">
+                                        点検データを適切に保管し、今後の設備管理に役立てます。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- 新しいセクションの追加 -->
+                <div class="blue-gradient-section py-8 px-4 sm:py-10 sm:px-6 rounded-2xl max-w-4xl mx-auto mb-12 mt-12">
+                    <p class="text-base sm:text-lg lg:text-xl font-bold">
+                        複雑で煩雑な大規模年次点検も、アーステスラで揺るぎない安心へ。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-custom-navy text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">
+                &copy; 2025 電気保安法人 株式会社アーステスラ. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- トップに戻るボタン -->
+    <button id="scrollToTopBtn" class="bg-[#4671F6] border-2 border-[#BAC9E5] text-white rounded-full p-4 shadow-lg opacity-0 transition-opacity duration-300 ease-in-out hover:bg-[#3b5eaf]">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- アコーディオンとトップに戻るボタンのスクリプト -->
+    <script>
+        // アコーディオン機能
+        // イベント移譲（Event Delegation）を使用し、親要素にリスナーを登録
+        const accordionContainer = document.getElementById('accordion-main-container');
+
+        if (accordionContainer) {
+            accordionContainer.addEventListener('click', (event) => {
+                // クリックされた要素が.accordion-buttonか、その子孫要素かを確認
+                const button = event.target.closest('.accordion-button');
+                if (button) {
+                    try {
+                        const accordionItem = button.parentElement;
+                        const content = accordionItem.querySelector('.accordion-content');
+                        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                        if (isExpanded) {
+                            accordionItem.classList.remove('active');
+                            button.setAttribute('aria-expanded', 'false');
+                            content.classList.remove('open');
+                            // 親アコーディオンを閉じる際に、すべての子アコーディオンも閉じる
+                            const nestedAccordions = content.querySelectorAll('.accordion-item');
+                            nestedAccordions.forEach(nestedItem => {
+                                const nestedButton = nestedItem.querySelector('.accordion-button');
+                                const nestedContent = nestedItem.querySelector('.accordion-content');
+                                if (nestedButton && nestedButton.getAttribute('aria-expanded') === 'true') {
+                                    nestedItem.classList.remove('active');
+                                    nestedButton.setAttribute('aria-expanded', 'false');
+                                    nestedContent.classList.remove('open');
+                                }
+                            });
+                        } else {
+                            // クリックされたアコーディオンを開く
+                            accordionItem.classList.add('active');
+                            button.setAttribute('aria-expanded', 'true');
+                            content.classList.add('open');
+                        }
+                    } catch (error) {
+                        console.error('An error occurred during accordion functionality:', error);
+                    }
+                }
+            });
+        }
+
+        // トップに戻るボタン
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ヘッダーの透明度をスクロールで変更
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+                header.classList.remove('bg-white/0', 'backdrop-blur-none', 'shadow-none');
+            } else {
+                header.classList.remove('header-scrolled');
+                header.classList.add('bg-white/0', 'backdrop-blur-none', 'shadow-none');
+            }
+        });
+
+    </script>
+</body>
+</html>
