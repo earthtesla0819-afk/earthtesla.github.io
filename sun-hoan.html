@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電気保安法人 株式会社アーステスラ｜レスポンシブサイト</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- カスタムCSS: テーマカラーやレイアウトの調整 -->
+    <style>
+        /* スムーズスクロールとレスポンシブ対応の基本設定 */
+        html, body {
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* 横スクロールを禁止 */
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f8fb;
+            color: #1e293b;
+            line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* セクション見出しの共通スタイル */
+        .section-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-heading-main {
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #20A4F3;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+            color: #20A4F3;
+        }
+        
+        /* カードのホバーアニメーション */
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(32, 164, 243, 0.2);
+        }
+        
+        .bg-custom-navy {
+            background-color: #1a3a5f;
+        }
+
+        .nav-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* ヘッダーのスタイル */
+        #header {
+            background-color: white; /* スクロール前は不透明 */
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        #header.header-scrolled {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .blue-gradient-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* アコーディオンのスタイル */
+        .accordion-item {
+            border-radius: 0.75rem;
+            background-color: #eefaff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-item.active {
+            border-left-color: #20A4F3;
+        }
+
+        .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            color: #0B4F6C;
+            cursor: pointer;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-button[aria-expanded="true"] .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); /* 開閉アニメーションをスムーズに */
+            /* 修正: 閉じているときはパディングをゼロにする */
+            padding: 0 1.5rem; 
+            padding-top: 0; 
+            padding-bottom: 0; 
+        }
+
+        /* アコーディオンが開いているときのみパディングを適用するクラスを導入 */
+        .accordion-content.content-open {
+            padding-top: 1.5rem; /* メインアコーディオンのコンテンツ上部のパディング */
+            padding-bottom: 1.5rem; /* メインアコーディオンのコンテンツ下部のパディング */
+        }
+
+        /* ネストされたアコーディオン内のコンテンツが開いたときのパディング */
+        /* これはネストされたアコーディオンのコンテンツ自体に適用 */
+        .accordion-item .accordion-content .p-4 {
+            /* ネストされたコンテンツ内のテキストに対するパディング */
+            padding: 1rem; 
+        }
+
+        /* メインアコーディオンのコンテンツ直下のpタグのスタイル */
+        .accordion-content > div > p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            font-size: 1.05rem; /* 1.05rem 程度に調整 */
+            line-height: 1.8; /* 行間を広めに調整 */
+        }
+        
+        .accordion-heading-icon {
+            font-size: 1.5rem;
+            color: #20A4F3;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+
+        /* ネストされたアコーディオンのコンテンツエリアのパディング調整 */
+        .info-card-nested {
+            background-color: #f4f8fb;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+            /* 親のアコーディオンのパディング内で収まるように調整 */
+            padding: 0; 
+        }
+        
+        .safe-management-section {
+            border-radius: 0.75rem;
+            background-color: #f4f8fb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+            padding: 1rem; 
+        }
+        
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #4671F6;
+            border: 2px solid #BAC9E5;
+            color: white;
+            border-radius: 9999px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+        
+        #scrollToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ==================== ナビゲーションバー ==================== -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-start h-20">
+                <a href="#" class="flex items-center gap-2 shrink-0">
+                    <img src="https://earth-tesla.co.jp/wp-content/themes/EarthTesla_Theme/img/logo_wide.svg" alt="電気保安法人 株式会社アーステスラ ロゴ" class="nav-logo">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== メインコンテンツ ==================== -->
+    <main class="grow pt-20">
+        <!-- ==================== ヒーローセクション ==================== -->
+        <section id="hero" class="relative text-white bg-custom-navy py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-wide">
+                        私たちのサービス
+                    </h1>
+                    <p class="text-xl sm:text-2xl mb-4 font-light">
+                        電気保安法人 株式会社アーステスラができること
+                    </p>
+                    <p class="text-base sm:text-lg max-w-3xl mb-8 opacity-90">
+                        私たちアーステスラは、建設業の電気に特化した<b>電気保安法人</b>です。電気の安定供給を支える「<b>電力インフラの安全を守る</b>」ことを使命とし、社会に貢献しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 太陽光発電設備関連業務セクション ==================== -->
+        <section id="security-management" class="py-16 md:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading mx-auto mb-12 w-fit">
+                    <div class="section-heading-main text-xl sm:text-2xl md:text-3xl">
+                        <span class="section-icon"><i class="fas fa-tools"></i></span>
+                        <span>太陽光発電設備の関連業務</span>
+                    </div>
+                </h2>
+                <div class="bg-slate-50 p-6 rounded-xl shadow-lg border-l-4 border-[#20A4F3] max-w-2xl mx-auto mb-8 text-left flex flex-col sm:flex-row items-start">
+                    <div class="text-2xl text-[#20A4F3] mr-4 mt-1 mb-2 sm:mb-0"><i class="fas fa-bolt"></i></div>
+                    <p class="text-base sm:text-lg text-slate-600">
+                        太陽光発電設備の導入には、多くの工程があります。アーステスラは、竣工検査から保安管理、各種申請手続きまで、お客様の太陽光発電事業を一貫してサポートします。出力1,000kW（1MW）以上のメガソーラーもお任せください。
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto mb-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-700">太陽光発電設備関連業務の3本柱</h3>
+                    <div class="w-full h-1 bg-[#20A4F3] rounded-full my-2"></div>
+                </div>
+
+                <!-- アコーディオンセクション -->
+                <div class="max-w-4xl mx-auto space-y-4 text-left" id="accordion-main-container">
+                    
+                    <!-- 竣工検査 -->
+                    <div class="accordion-item" id="accordion-completion-inspection-item">
+                        <button class="accordion-button" aria-expanded="false" aria-controls="content-completion-inspection">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-search-plus"></i></span>
+                                <span>竣工検査（使用前自己確認 / 使用前自主検査）</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <!-- 修正箇所: main-content-padding クラスを削除し、JSで制御する content-open クラスに頼る -->
+                        <div class="accordion-content" id="content-completion-inspection">
+                            <!-- ここからパディングを内包する要素で囲む -->
+                            <div class="px-0 sm:px-0 md:px-0">
+                                <p class="text-sm sm:text-base text-slate-700 mb-4">
+                                    太陽光発電設備を設置する事業者は、設備の使用を<b>開始する前</b>に、設備の<b>出力</b>に応じて、以下の検査と手続きが義務付けられています。<br><br>
+                                    ・<b>使用前自己確認</b>：出力<b>10kW以上2,000kW未満</b>の設備<br>
+                                    ・<b>使用前自主検査</b>：出力<b>2,000kW以上</b>の設備（メガソーラーなど）<br><br>
+                                    これらの検査は、設備が<b>国の定める安全基準</b>を満たしているかを確認するために行われます。<b>検査結果</b>は、電気工作物を管轄する<b>産業保安監督部長</b>に<b>届け出</b>が必要です。
+                                </p>
+                                 <div class="safe-management-section mt-4 p-4">
+                                    <h4 class="text-[#0B4F6C] mb-2 font-bold text-base sm:text-lg"><b>竣工検査の主な項目</b></h4>
+                                    <!-- ネストされたアコーディオン -->
+                                    <div class="space-y-4">
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">1. 外観点検</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">太陽光発電設備を構成する各機器の安全を確保するため、機器への接地線の<b>正しい接続</b>ができているか、開閉器類の<b>過負荷</b>や<b>地絡保護</b>の<b>有無</b>などについて、周囲を含め時間をかけて確認します。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">2. 接地抵抗測定</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm"><b>接地抵抗計</b>を用いて、機器の<b>接地抵抗値</b>が適切かどうかを測定します。この測定は、<b>感電</b>の<b>防止</b>や事故発生時の<b>回路</b>の<b>保護</b>を目的としています。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">3. 絶縁抵抗測定</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">太陽光発電設備全体の<b>絶縁抵抗</b>を測定し、その値が適切かどうかを確認します。絶縁抵抗値が低いと、<b>地絡（漏電）</b>を引き起こし、<b>感電</b>の危険があります。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">4. 絶縁耐力試験</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">この試験は、通常の使用電圧よりも<b>高い電圧</b>を印加し、機器や電線が<b>絶縁破壊</b>を起こさないかを確認する試験です。特に直流回路では、<b>太陽電池モジュール</b>が日中に発電するため、原則として<b>日没後</b>に行われます。また、<b>アーステスラ</b>では、高容量の直流電圧印加装置を用いて、<b>7,200V</b>まで瞬時に電圧を印加することが可能です。
+一方、<b>低圧</b>（直流750V以下）の<b>太陽電池モジュール</b>については、日本工業規格（JIS）等に適合していることがメーカーの試験成績書などで証明できれば、<b>絶縁耐力試験</b>を<b>省略</b>することができます。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">5. 保護装置試験</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">この試験では、試験器を用いて<b>意図的</b>に<b>異常</b>な<b>電圧</b>や<b>電流</b>を発生させ、<b>受変電設備</b>や<b>PCS</b>に内蔵されている<b>保護継電器</b>が適切に動作するかを確認します。また、保護継電器が動作した際に連動する<b>開閉器</b>や<b>遮断器</b>の開閉表示、故障表示、警報装置などが正常に機能するかどうかも併せて確認します。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">6. 遮断器関係試験</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">この試験は、圧縮空気や圧油などの操作用駆動源による<b>付属タンク</b>を持つ遮断器や開閉器が対象です。しかし、高圧連系の設備では<b>VCB</b>が一般的で、付属タンクを持つ設備は少ないため、実施される機会も<b>少ない</b>です。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">7. 総合インターロック試験</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">この試験は、配電線の停電などの<b>事故</b>や<b>異常</b>を<b>模擬的</b>に発生させ、<b>保護継電器</b>、<b>開閉器</b>、<b>遮断器</b>が<b>設定通りに動作</b>するか、また、表示や警報が適切に機能するかを併せて確認する試験です。インターロックが不適切な場合、事故発生時に発電設備に影響を及ぼす可能性があるため、必ず<b>設定通りに動作</b>をするかを確認します。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">8. 制御電源喪失試験</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">この試験では、運転中（発電中）の発電設備を遮断させ、その時の<b>過渡変化</b>によって生じる<b>主要パラメータ</b>の<b>測定</b>や、遮断器・変圧器などの開閉状態、警報や表示などを確認します。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">9. 負荷遮断試験</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">この試験では、発電出力の1/4、2/4、3/4、4/4といった様々な負荷状態で<b>遮断</b>を行い、その際の<b>過渡変化</b>によって生じる<b>電圧上昇</b>の<b>波高値</b>が管理値の範囲内に収まっていることを確認します。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">10. 遠隔監視制御試験</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">この試験は、技術員が発電制御所に常駐して遠隔で監視・制御を行う「<b>遠隔常時監視制御方式</b>」の場合に実施されます。その際、<b>遠隔操作</b>で<b>VCB</b>や<b>PCS</b>の起動・停止が適切に行えるかを確認します。現状では、「<b>随時監視制御方式</b>」が採用されていることが多いため、この試験の対象となる発電所は<b>少ない</b>です。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">11. 負荷試験（出力試験）</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">この試験では、通常の運転時における各機器の<b>温度上昇</b>の<b>過渡状況</b>を<b>放射温度計</b>などで測定し、<b>飽和状態</b>になるまで連続運転させるものです。また、<b>PCS</b>や<b>変圧器</b>の<b>異常振動</b>、<b>異音</b>の<b>有無</b>を確認するとともに、電源品質アナライザを用いて<b>高調波</b>も測定します。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">12. 騒音測定</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">騒音規制法第2条第1項に規定する特定施設を設置する発電所で、同法第3条第1項に規定する指定地域内にある太陽光発電所は、JIS Z 8731に規定されている方法で<b>騒音レベル</b>を測定します。</p></div>
+                                        </div>
+                                        <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">13. 振動測定</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content"><p class="p-4 text-sm">振動規制法第2条第1項に規定する特定施設を設置する発電所で、同法第3条第1項に規定する指定地域内にある太陽光発電所は、「特定工場などにおいて発生する振動に関する基準」に規定されている方法で<b>振動</b>を測定します。</p></div>
+                                        </div>
+                                         <div class="accordion-item info-card-nested">
+                                            <button class="accordion-button" aria-expanded="false"><span class="font-bold">用語</span><span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span></button>
+                                            <div class="accordion-content">
+                                                <div class="p-4 text-sm">
+                                                    <p class="mb-4">
+                                                        <b class="text-base">太陽電池モジュールとは</b><br>
+                                                        <b>太陽光</b>（光エネルギー）を<b>直流の電気</b>（電気エネルギー）に<b>変換</b>する設備です。<br>
+                                                        太陽電池1枚を「<b>セル</b>」と呼び、複数のセルが集まったものが「<b>モジュール</b>」です。<br>
+                                                        複数のモジュールを直列に接続したものが「<b>ストリング</b>」です。
+                                                    </p>
+                                                    <p class="mb-4">
+                                                        <b class="text-base">PCS（パワーコンディショナ）とは</b><br>
+                                                        太陽電池モジュールが発電した<b>直流の電気</b>を、<b>交流に変換</b>するための設備です。<br>
+                                                        最大電力追従制御（MPPT : Maximum Power Point Tracking）機能により、天候などによって変動する発電出力を自動で最大化します。<br>
+                                                        PCSは、主に直流を交流に変換する<b>インバータ</b>と、異常時に動作する<b>保護継電器</b>で構成されています。
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ここまでパディングを内包する要素で囲む -->
+                        </div>
+                    </div>
+                    
+                    <!-- 産業保安監督部への申請手続き (修正箇所) -->
+                    <div class="accordion-item" id="accordion-application-item">
+                        <button class="accordion-button" aria-expanded="false">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-file-invoice"></i></span>
+                                <span>産業保安監督部への申請手続き</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <!-- 修正箇所: main-content-padding クラスを削除 -->
+                        <div class="accordion-content" id="content-application">
+                            <p class="p-4 text-slate-700">
+                                太陽光発電設備を新設し、<b>竣工検査</b>（使用前自己確認/使用前自主検査）を実施した後は、その結果をまとめた「<b>使用前自己確認結果届出書</b>」を管轄する<b>産業保安監督部</b>に提出します。その後、提出が認められ、受領の確認を得た上で、太陽光発電所の<b>運用開始</b>となります。<br><br>
+                                しかし、設置に伴う各種申請書類の作成・提出は<b>複雑な手続き</b>を要するため、「<b>実際に使用を開始したい日</b>」から逆算して、遅延なく運用を開始できるよう準備が必要です。<br><br>
+                                アーステスラでは、この多岐にわたる<b>産業保安監督部への申請手続き</b>を、設置者に代行して進めることが可能です。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 月次点検、年次点検 -->
+                    <div class="accordion-item" id="accordion-inspection-item">
+                        <button class="accordion-button" aria-expanded="false">
+                            <span class="flex items-center text-sm sm:text-base md:text-lg">
+                                <span class="accordion-heading-icon"><i class="fas fa-clipboard-list"></i></span>
+                                <span>月次点検、年次点検</span>
+                            </span>
+                            <span class="accordion-icon ml-4 flex-shrink-0"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                         <!-- 修正箇所: main-content-padding クラスを削除 -->
+                        <div class="accordion-content" id="content-inspection">
+                            <div class="p-4 text-sm sm:text-base text-slate-700 space-y-4 leading-relaxed">
+                                <p>
+                                    太陽光発電設備には、「<b>月次点検</b>」と「<b>年次点検</b>」の2種類の定期点検があり、いずれも出力<b>50kW以上</b>の太陽光発電設備が対象となります。なお、<b>50kW以上5,000kW未満</b>の太陽光発電設備の場合、<b>電気主任技術者</b>を選任せずに<b>外部委託</b>することも可能です。
+                                </p>
+                                
+                                <div class="mt-4">
+                                    <p class="font-bold text-[#0B4F6C]">
+                                        電気主任技術者を外部委託した場合、法令で定められた点検頻度は以下の通りです。
+                                    </p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1 mt-2">
+                                        <li>太陽電池モジュールやPCS：<b>年に2回</b></li>
+                                        <li>専用の受変電設備：<b>隔月〜6ヶ月に1回以上</b></li>
+                                    </ul>
+                                </div>
+
+                                <div class="pt-2">
+                                    <p class="font-bold text-lg text-[#0B4F6C] border-b border-gray-300 pb-1 mb-2">
+                                        月次点検の内容
+                                    </p>
+                                    <p>
+                                        この点検は主に、各設備の<b>外観を目視で点検</b>し、保安規定に従って行います。<br>
+                                        自家用電気工作物保安管理規定（JECA 8021-2018）では、「<b>設備を停止させない状況での点検</b>」と定められています。点検頻度は<b>6ヶ月に1回</b>とされていますが、一度に全ての設備を点検する必要はなく、部分的に分けて点検を進め、<b>全体を6ヶ月以内</b>に終えれば問題ありません。
+                                    </p>
+                                </div>
+                                
+                                <div class="pt-2">
+                                    <p class="font-bold text-lg text-[#0B4F6C] border-b border-gray-300 pb-1 mb-2">
+                                        年次点検の内容
+                                    </p>
+                                    <p>
+                                        自家用電気工作物保安管理規定（JECA 8021-2018）では、「<b>設備を停止させた状況での点検</b>」と定められていて、設備を停止（<b>停電</b>）させた状態で、保安規定に従い<b>測定器や試験器</b>を用いて実施されます。点検頻度は原則<b>年1回</b>です。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blue-gradient-section py-8 px-4 sm:py-10 sm:px-6 rounded-2xl max-w-4xl mx-auto mb-12 mt-12">
+                    <p class="text-base sm:text-lg lg:text-xl font-bold">
+                        太陽エネルギーを電力に。アーステスラは未来の電力インフラを支えます。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-custom-navy text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">
+                &copy; 2025 電気保安法人 株式会社アーステスラ. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- トップに戻るボタン -->
+    <button id="scrollToTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- スクリプト -->
+    <script>
+        /**
+         * 親のアコーディオンの高さを再計算する関数
+         * ネストされたアコーディオンが開閉する際、親のアコーディオンがコンテンツを見切らないように、
+         * max-heightをscrollHeightに基づいて再計算する。
+         * @param {HTMLElement} content - 親のアコーディオンのコンテンツ要素
+         */
+        function updateParentHeight(content) {
+            const currentHeight = content.scrollHeight;
+            content.style.maxHeight = currentHeight + 'px';
+            
+            // アニメーション完了後にmaxHeightを非常に大きな値に設定し、子要素の開閉に対応できるようにする
+            setTimeout(() => {
+                if (content.closest('.accordion-item')?.classList.contains('active')) {
+                    content.style.maxHeight = '6000px'; 
+                }
+            }, 550); // transition: max-height 0.5s cubic-bezier(0, 1, 0, 1) に合わせて調整
+        }
+
+        // ネストされたアコーディオンを制御するためのヘルパー関数
+        function toggleNestedAccordion(button) {
+            const accordionItem = button.closest('.accordion-item');
+            const content = accordionItem.querySelector('.accordion-content');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            // 最も外側のメインアコーディオンのコンテンツを取得
+            const mainAccordionContent = button.closest('#content-completion-inspection');
+
+            if (isExpanded) {
+                // 閉じる
+                content.style.maxHeight = '0';
+                button.setAttribute('aria-expanded', 'false');
+                
+                // ネストされたアコーディオンが閉じた後、親の高さも更新（閉じるアニメーション後に実行）
+                content.addEventListener('transitionend', function onTransitionEnd() {
+                    if (mainAccordionContent) {
+                        // 親アコーディオンの高さ再計算
+                        updateParentHeight(mainAccordionContent);
+                    }
+                    content.removeEventListener('transitionend', onTransitionEnd);
+                });
+                
+            } else {
+                // 開く
+                // content.scrollHeight を使って正確な高さを取得
+                content.style.maxHeight = content.scrollHeight + 'px';
+                button.setAttribute('aria-expanded', 'true');
+                
+                // ネストされたアコーディオンが開いた後、親の高さを再調整
+                content.addEventListener('transitionend', function onTransitionEnd() {
+                    if (button.getAttribute('aria-expanded') === 'true' && mainAccordionContent) {
+                        // 親アコーディオンの高さも更新
+                        updateParentHeight(mainAccordionContent);
+                    }
+                    content.removeEventListener('transitionend', onTransitionEnd);
+                });
+            }
+        }
+
+        // メインアコーディオンを制御する関数
+        function toggleMainAccordion(button) {
+            const accordionItem = button.closest('.accordion-item');
+            const content = accordionItem.querySelector('.accordion-content');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            if (isExpanded) {
+                // 閉じる
+                content.style.maxHeight = '0';
+                button.setAttribute('aria-expanded', 'false');
+                accordionItem.classList.remove('active');
+                content.classList.remove('content-open'); // パディングを削除
+            } else {
+                // 開く
+                content.classList.add('content-open'); // パディングを追加
+                
+                // パディング追加後にscrollHeightを正確に取得し、開くアニメーションに使用
+                // requestAnimationFrameで次のフレームで実行することで、CSSが適用された後の正確な高さを取得
+                requestAnimationFrame(() => {
+                    // content-openクラスが適用された後の正しい高さを取得
+                    const targetHeight = content.scrollHeight; 
+                    content.style.maxHeight = targetHeight + 'px';
+                    button.setAttribute('aria-expanded', 'true');
+                    accordionItem.classList.add('active');
+
+                    // 開いた後、コンテンツの高さが変動しても対応できるように大きな値を設定
+                    // ネストされた要素がある場合（竣工検査）のみ、非常に大きな値に設定して、子の開閉に備える
+                    if (accordionItem.id === 'accordion-completion-inspection-item') {
+                        content.addEventListener('transitionend', function onTransitionEnd() {
+                            if (button.getAttribute('aria-expanded') === 'true') {
+                                content.style.maxHeight = '6000px'; 
+                            }
+                            content.removeEventListener('transitionend', onTransitionEnd);
+                        });
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionContainer = document.getElementById('accordion-main-container');
+            if (accordionContainer) {
+                accordionContainer.addEventListener('click', (event) => {
+                    const button = event.target.closest('.accordion-button');
+                    if (!button) return;
+
+                    // 'safe-management-section' 内の要素かどうかで処理を分ける
+                    // ネストされたアコーディオンのボタンは 'safe-management-section' 内にある
+                    const isNested = button.closest('.safe-management-section');
+                    
+                    if (isNested) {
+                        // ネストされたアコーディオンの処理
+                        toggleNestedAccordion(button);
+                    } else {
+                        // メインアコーディオンの処理
+                        toggleMainAccordion(button);
+                    }
+                });
+            }
+
+            // トップに戻るボタン
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ヘッダーのスクロール効果
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
