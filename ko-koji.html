@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電気保安法人 株式会社アーステスラ｜自家用電気工作物更新サービス</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- カスタムCSS: テーマカラーやレイアウトの調整 -->
+    <style>
+        /* スムーズスクロールとレスポンシブ対応の基本設定 */
+        html, body {
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* 横スクロールを禁止 */
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f8fb;
+            color: #1e293b;
+            line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* セクション見出しの共通スタイル */
+        .section-heading {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-heading-main {
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #20A4F3;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+            color: #20A4F3;
+        }
+        
+        .bg-custom-navy {
+            background-color: #1a3a5f;
+        }
+
+        /* ヘッダーのスタイル */
+        #header {
+            background-color: white; /* スクロール前は不透明 */
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        #header.header-scrolled {
+            background-color: rgba(255, 255, 255, 0.9); /* 少し透明度を上げる */
+            backdrop-filter: blur(8px);
+            box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+        }
+        
+        .blue-gradient-section {
+            background-image: linear-gradient(to top right, #004aad 70%, #20a4f3 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* アコーディオン（常時展開セクション）のデザインベース */
+        .safe-management-section {
+            border-radius: 0.75rem;
+            background-color: #eefaff; /* 薄い水色 */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #20A4F3;
+        }
+        
+        .accordion-heading-icon {
+            font-size: 1.5rem;
+            color: #20A4F3;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+        
+        /* アコーディオンコンテンツが展開された時の上部のマージン */
+        .accordion-content.active {
+            margin-top: 1rem;
+        }
+
+        /* トップに戻るボタン */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #4671F6;
+            border: 2px solid #BAC9E5;
+            color: white;
+            border-radius: 9999px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+        
+        #scrollToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* 削除: .nav-logo と .list-disc-jp は削除されました */
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ==================== ナビゲーションバー ==================== -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-start h-20">
+                <!-- ロゴのパスはそのまま使用 -->
+                <a href="#" class="flex items-center gap-2 shrink-0">
+                    <!-- レスポンシブな高さクラスを使用 -->
+                    <img src="https://earth-tesla.co.jp/wp-content/themes/EarthTesla_Theme/img/logo_wide.svg" alt="電気保安法人 株式会社アーステスラ ロゴ" class="nav-logo h-8 sm:h-10 md:h-12">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== メインコンテンツ ==================== -->
+    <main class="grow pt-20">
+        <!-- ==================== ヒーローセクション ==================== -->
+        <section id="hero" class="relative text-white bg-custom-navy py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-wide">
+                        私たちのサービス
+                    </h1>
+                    <p class="text-xl sm:text-2xl mb-4 font-light">
+                        電気保安法人 株式会社アーステスラができること
+                    </p>
+                    <p class="text-base sm:text-lg max-w-3xl mb-8 opacity-90">
+                        私たちアーステスラは、建設業の電気に特化した<b>電気保安法人</b>です。電気の安定供給を支える「<b>電力インフラの安全を守る</b>」ことを使命とし、社会に貢献しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 自家用電気工作物の更新工事セクション ==================== -->
+        <section id="security-management" class="py-16 md:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading mx-auto mb-12 w-fit">
+                    <div class="section-heading-main text-xl sm:text-2xl md:text-3xl">
+                        <span class="section-icon"><i class="fas fa-tools"></i></span>
+                        <span>自家用電気工作物の更新工事</span>
+                    </div>
+                </h2>
+                <div class="bg-slate-50 p-6 rounded-xl shadow-lg border-l-4 border-[#20A4F3] max-w-2xl mx-auto mb-8 text-left flex flex-col sm:flex-row items-start">
+                    <div class="text-2xl text-[#20A4F3] mr-4 mt-1 mb-2 sm:mb-0"><i class="fas fa-bolt"></i></div>
+                    <p class="text-base sm:text-lg text-slate-600">
+                        設備が古くなると、ある日突然の故障や停電のリスクが高まります。機器ごとの更新推奨時期を基に計画的な更新工事で電力の安定供給を守ります。
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto mb-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-700">電気設備の更新工事について</h3>
+                    <div class="w-full h-1 bg-[#20A4F3] rounded-full my-2"></div>
+                </div>
+
+                <!-- コンテンツコンテナ -->
+                <div class="max-w-4xl mx-auto space-y-8 text-left">
+                    
+                    <!-- 1. 電気設備の更新の意義 (アコーディオン化しないセクション) -->
+                    <div class="safe-management-section p-6 sm:p-8 md:p-10" id="completion-inspection-section">
+                        <h3 class="flex items-center text-sm sm:text-base md:text-lg font-bold text-[#0B4F6C] border-b-2 border-slate-300 pb-3 mb-4">
+                            <span class="accordion-heading-icon text-2xl"><i class="fas fa-cog"></i></span>
+                            <span class="text-lg sm:text-xl md:text-2xl">電気設備の更新の意義</span>
+                        </h3>
+                        
+                        <!-- コンテンツエリア (常時展開) -->
+                        <div id="content-completion-inspection-fixed">
+                            <!-- 電気設備更新の目安 -->
+                             <div class="mt-6 p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-4 font-bold text-base sm:text-lg"><b>電気設備更新の目安</b> </h4>
+                                <p class="text-base text-slate-700 leading-relaxed">
+                                    ビルや工場に設置されている<b>高圧受電設備</b>は、高圧の電気を100Vや200Vなどの<b>低圧</b>に変換して利用するための重要な設備です。この設備には様々な<b>高圧機器</b>が組み込まれています。<br>
+                                    <b>高圧受電設備</b>の劣化は、点検や測定だけでは把握が難しい場合があり、<b>経年劣化</b>による<b>高圧機器</b>の故障は<b>停電事故</b>を引き起こす可能性があるため、<b>計画的な更新</b>をおすすめします。
+                                </p>
+                            </div>
+
+                            <!-- 計画的な電気設備の更新について -->
+                            <div class="mt-6 p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-4 font-bold text-base sm:text-lg"><b>計画的な電気設備の更新について</b></h4>
+                                <p class="text-base text-slate-700 leading-relaxed">
+                                    <b>キュービクル</b>などの<b>電気設備</b>は、電気を安全に利用するために欠かせない大切な設備で、複数の<b>高圧機器</b>で構成されています。<br>
+                                    これらの<b>高圧機器</b>には、安全に使用できる期間の目安として<b>更新推奨時期</b>が個別に設定されています。電気設備は<b>常時</b>稼働し続けるため、この<b>更新推奨時期</b>内に更新を続けることで、故障などの<b>リスク</b>を<b>最小限</b>に抑えることができます。
+                                </p>
+                            </div>
+
+                            <!-- 機器の更新推奨時期を過ぎたら？ -->
+                            <div class="mt-6 p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-4 font-bold text-base sm:text-lg"><b>機器の更新推奨時期を過ぎたら？</b></h4>
+                                <p class="text-base text-slate-700 leading-relaxed">
+                                    <b>更新推奨時期</b>を過ぎて使用を続けると、<b>高圧機器</b>の故障や誤作動が起き、<b>停電</b>による<b>操業停止</b>につながる可能性があります。<br>
+                                    また、代替品はすぐに手配できないため、<b>数日間</b>の<b>停電</b>が続く恐れもあります。この長期停電は、高圧受電設備の設置者だけでなく取引先などへも大きな損害を与え、<b>信用失墜</b>につながる懸念もあります。<br>
+                                    性能低下や故障による<b>停電</b>を防ぐため、高圧機器の<b>定期的</b>な<b>更新</b>や<b>劣化部</b>の<b>交換</b>は不可欠です。特に、<b>高圧受電設備</b>の事故は<b>波及事故</b>を招き、近隣全体に大きな影響を及ぼす可能性があります。このような社会的影響もリスクとして考慮し、十分な対策を講じる必要があります。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 高圧機器の更新推奨時期 (アコーディオン化) -->
+                    <div class="safe-management-section p-6 sm:p-8 md:p-10" id="recommended-replacement-period-section">
+                        <!-- アコーディオンボタン -->
+                        <button class="accordion-toggle w-full flex justify-between items-center text-left text-sm sm:text-base md:text-lg font-bold text-[#0B4F6C] border-b-2 border-slate-300 pb-3 transition-colors duration-200" data-target="content-recommended-replacement-period">
+                            <div class="flex items-center">
+                                <span class="accordion-heading-icon text-2xl"><i class="fas fa-calendar-days"></i></span>
+                                <span class="text-lg sm:text-xl md:text-2xl">高圧機器の更新推奨時期</span>
+                            </div>
+                            <!-- 開閉アイコン -->
+                            <i class="fas fa-chevron-down accordion-icon transform transition-transform duration-300 text-[#20A4F3]"></i>
+                        </button>
+                        
+                        <!-- コンテンツエリア (初期非表示) -->
+                        <div id="content-recommended-replacement-period" class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="text-base text-slate-700 leading-relaxed mb-6">
+                                <b>更新推奨時期</b>とは、高圧機器の故障実績や、日本電機工業会、機器メーカーなどの知見に基づき、「<b>それまでは安全に電気を使用できる目安</b>」として定められているものです。
+                            </p>
+                            
+                            <!-- 個別機器カード -->
+                            <div class="space-y-4">
+                                <!-- 1. 責任分界点近くの保護装置 -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                       <b>1. 責任分界点近くの保護装置</b><br><br>
+                                        <b>柱上気中負荷開閉器（PAS）</b><br>更新の目安：<b>15年</b><br>
+                                        <b>地中線用高圧負荷開閉器（UGS）</b><br>更新の目安：<b>20年</b><br><br>
+                                        <b>PAS</b>や<b>UGS</b>は、高圧で受電する需要家の電気設備と電力会社の配電線の接続点（受電点）に設けられる高圧機器の<b>区分開閉器</b>のことであり、保安上の責任を分ける<b>責任分界点</b>の役割を果たします。責任分界点より電力会社側の設備は電力会社の責任で、需要家側の設備は需要家の責任で<b>管理</b>され、事故発生時の<b>責任</b>はそれぞれの<b>管理側</b>が負うことになります。
+                                    </p>
+                                </div>
+                                
+                                <!-- 2. 高圧ケーブル -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>2. 高圧ケーブル</b><br><br>
+                                        <b>E-Eケーブル</b>（外部半導電層が押出成形）<br>更新の目安：<b>20年</b><br>
+                                        <b>E-Tケーブル</b>（外部半導電層がテープ巻き）<br>更新の目安：<b>20年</b><br><br>
+                                        高圧引込みに用いられ、CV（架橋ポリエチレン絶縁ビニルシース）ケーブルが主流です。ケーブルには2種類あり、水トリー対策として、<b>E-Eケーブル</b>を推奨します。
+                                    </p>
+                                </div>
+                                
+                                <!-- 3. 断路器（DS） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>3. 断路器（DS）</b><br><br>
+                                        更新の目安：<b>20年</b><br><br>
+                                        断路器は、点検・整備・修理などの際に、設備を電路から開放するための機器です。この開放操作は、無負荷の状態でのみ行うことができます。
+                                    </p>
+                                </div>
+                                
+                                <!-- 4. 真空遮断器（VCB） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>4. 真空遮断器（VCB）</b><br><br>
+                                        更新の目安：<b>20年</b><br><br>
+                                        真空遮断器は、事故時にも電路を遮断できる高圧用の開閉器です。継電器と組み合わせることで、高圧電路の保護が可能になります。
+                                    </p>
+                                </div>
+                                
+                                <!-- 5. 計器用変圧器（VT）・計器用変流器（CT） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>5. 計器用変圧器（VT）・計器用変流器（CT）</b><br><br>
+                                        更新の目安：<b>15年</b><br><br>
+                                        <b>計器用変圧器（VT）</b><br>高圧電圧を計器や継電器で使用可能な電圧に変換するための機器です。<br><b>計器用変流器（CT）</b><br>高圧電路の電流を計器や継電器で使用可能な大きさに変換するための機器です。
+                                    </p>
+                                </div>
+                                
+                                <!-- 6. 高圧交流負荷開閉器（LBS） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>6. 高圧交流負荷開閉器（LBS）</b><br><br>
+                                        更新の目安：<b>屋外</b>設置 <b>10年</b> / <b>屋内</b>設置 <b>15年</b><br><br>
+                                        主に300kVA未満の高圧受電設備の主遮断装置として用いられます。電路の過電流保護を行うことができる高圧用の開閉器のことです。
+                                    </p>
+                                </div>
+                                
+                                <!-- 7. 高圧カットアウトスイッチ（PCS） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>7. 高圧カットアウトスイッチ（PCS）</b><br><br>
+                                        更新の目安：<b>15年</b>から<b>20年</b><br><br>
+                                        主に300kVA未満の変圧器一次側に設置され、過負荷保護のために使われます。
+                                    </p>
+                                </div>
+                                
+                                <!-- 8. 変圧器（TR） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>8. 変圧器（TR）</b><br><br>
+                                        更新の目安：<b>20年</b><br><br>
+                                        変圧器は、電圧を高圧から低圧に変換するための機器です。
+                                    </p>
+                                </div>
+                                
+                                <!-- 9. 進相コンデンサ（SC） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>9. 進相コンデンサ（SC）</b><br><br>
+                                        更新の目安：<b>15年</b><br><br>
+                                        進相コンデンサは、電気設備全体の力率を改善するための機器です。
+                                    </p>
+                                </div>
+                                
+                                <!-- 10. 直列リアクトル（SR） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>10. 直列リアクトル（SR）</b><br><br>
+                                        更新の目安：<b>15年</b><br><br>
+                                        直列リアクトルは、高調波の緩和やコンデンサへの突入電流の抑制を行うための機器です。
+                                    </p>
+                                </div>
+                                
+                                <!-- 11. 保護継電器（RY） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>11. 保護継電器（RY）</b><br><br>
+                                        更新の目安：<b>15年</b><br><br>
+                                        保護継電器は、受電設備における過負荷、短絡、絶縁劣化、または電圧異常などを検出するための機器です。
+                                    </p>
+                                </div>
+                                
+                                <!-- 12. 低圧開閉器（MCCB） -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>12. 低圧開閉器（MCCB）</b><br><br>
+                                        更新の目安：<b>20年</b><br><br>
+                                        低圧開閉器は、キュービクル内に設置される低圧側のブレーカーで、主に過電流や短絡などの異常時に自動的に回路を遮断します。
+                                    </p>
+                                </div>
+                                
+                                <!-- キュービクル (特記事項) - 色を統一 -->
+                                <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-white shadow-inner">
+                                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                                        <b>※ キュービクル</b><br><br>
+                                        更新の目安：<b>15年</b><br><br>
+                                        電気設備機器を収める「<b>鉄箱</b>」のことです。中には複数の<b>高圧機器</b>が<b>収納</b>されています。据付面積が小さく安全性が高い反面、<b>屋外</b>に設置されたキュービクルは、<b>設置環境</b>によって老朽化が進行します。その主な原因は、長い年月を経て、<b>雨風</b>や<b>紫外線</b>に晒されることによる塗装の<b>剥がれ</b>です。そこから<b>サビ</b>が発生して<b>金属腐食</b>が進みます。これによって外箱に生じた隙間や穴から、<b>湿気</b>や<b>小動物</b>が内部に侵入し、<b>内部機器</b>の<b>故障</b>や<b>漏電</b>、<b>火災</b>といった重大な<b>電気事故</b>につながることがあります。<br><br><b>アーステスラ</b>では、<b>高圧機器</b>の<b>改修</b>や<b>更新工事</b>を通じて変電設備の<b>安定性</b>を保ちます。さらに、進行するサビ対策として<b>塗装補修</b>（防サビ・耐候）も実施し、設備機器の<b>延命措置</b>を図ります。なお、機器全体が老朽化していて、<b>費用対効果</b>が<b>高い</b>と判断される場合には、キュービクル<b>丸ごと</b>更新工事にも対応できます。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. 産業廃棄物対応 (アコーディオン化しないセクション) -->
+                    <div class="safe-management-section p-6 sm:p-8 md:p-10" id="industrial-waste-disposal-section">
+                        <h3 class="flex items-center text-sm sm:text-base md:text-lg font-bold text-[#0B4F6C] border-b-2 border-slate-300 pb-3 mb-4">
+                            <!-- アイコンは fa-recycle (リサイクル/廃棄物) を使用 -->
+                            <span class="accordion-heading-icon text-2xl"><i class="fas fa-recycle"></i></span>
+                            <span class="text-lg sm:text-xl md:text-2xl">産業廃棄物の対応</span>
+                        </h3>
+                        
+                        <!-- コンテンツエリア (常時展開) -->
+                        <div id="content-industrial-waste-fixed">
+                            <!-- 産業廃棄物対応に関する文章を新しいカード形式で追加 -->
+                            <!-- 背景色を bg-white に統一 -->
+                            <div class="mt-6 p-4 rounded-lg border-l-4 border-blue-400 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-4 font-bold text-base sm:text-lg"><b>更新工事に伴う廃棄物対応</b> </h4>
+                                <p class="text-base text-slate-700 leading-relaxed">
+                                    私たちアーステスラでは、自家用電気工作物の更新工事の際に発生する<b>産業廃棄物</b>についても、<b>収集</b>・<b>運搬</b>から<b>処分</b>まで、一貫して対応します。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 有害物質を含む機器の2027年問題と対策 (見出し) -->
+                    <div class="max-w-4xl mx-auto mb-4 pt-8">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-700">有害物質を含む機器の2027年問題と対策</h3>
+                        <div class="w-full h-1 bg-[#20A4F3] rounded-full my-2"></div>
+                    </div>
+
+                    <!-- 4. PCB含有機器の収集運搬・処分 (アコーディオン化) -->
+                    <div class="safe-management-section p-6 sm:p-8 md:p-10" id="pcb-disposal-section">
+                        <!-- アコーディオンボタン -->
+                        <button class="accordion-toggle w-full flex justify-between items-center text-left text-sm sm:text-base md:text-lg font-bold text-[#0B4F6C] border-b-2 border-slate-300 pb-3 transition-colors duration-200" data-target="content-pcb-disposal">
+                            <div class="flex items-center">
+                                <!-- アイコンは fa-flask (化学物質/検査) を使用 -->
+                                <span class="accordion-heading-icon text-2xl"><i class="fas fa-flask"></i></span>
+                                <span class="text-lg sm:text-xl md:text-2xl">PCB含有機器の収集運搬・処分</span>
+                            </div>
+                            <!-- 開閉アイコン -->
+                            <i class="fas fa-chevron-down accordion-icon transform transition-transform duration-300 text-[#20A4F3]"></i>
+                        </button>
+                        
+                        <!-- コンテンツエリア (初期非表示) -->
+                        <div id="content-pcb-disposal" class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <!-- 導入文 (カード形式ではない) -->
+                            <p class="text-base text-slate-700 leading-relaxed mb-6">
+                                年次点検や自家用電気工作物の更新工事の際などに行う<b>PCB含有調査</b>は、<b>PCB</b>の<b>含有</b>が<b>確認</b>された<b>場合</b>、適正に処理する必要があります。
+                            </p>
+
+                            <!-- 「PCB」小セクション - 背景色を bg-white に統一 -->
+                            <div class="mt-6 p-4 rounded-lg border-l-4 border-blue-400 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-3 font-bold text-base sm:text-lg"><b>PCB</b></h4>
+                                <p class="text-base text-slate-700 leading-relaxed">
+                                    PCB（<b>ポリ塩化ビフェニル</b>）とは、<b>人工的</b>に作られた油状の<b>化学物質</b>です。電気を通しにくく、不燃性や耐熱性に優れた性質から、かつては電気機器の絶縁油などとして<b>広く使用</b>されていましたが、環境中で分解されにくく、生物の体内に蓄積しやすいという高い<b>毒性</b>と<b>環境残留性</b>が、人体や環境への悪影響として問題視されたことにより、現在では法律によって<b>製造</b>および<b>新たな使用</b>が<b>禁止</b>されています。
+                                </p>
+                            </div>
+                            
+                            <!-- 「PCB含有調査」小セクション - 背景色を bg-white に統一 -->
+                            <div class="mt-6 p-4 rounded-lg border-l-4 border-blue-400 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-3 font-bold text-base sm:text-lg"><b>PCB含有調査</b></h4>
+                                <p class="text-base text-slate-700 leading-relaxed">
+                                    <b>PCB含有調査</b>は、<b>機器</b>を<b>設置</b>する<b>事業者</b>が行います。ただし、安全上の理由から、電気主任技術者、電気管理技術者、または電気保安法人などの専門家に<b>依頼</b>して実施することが<b>推奨</b>されています。<br>調査の結果、<b>PCB</b>の<b>含有</b>が<b>確認</b>された<b>場合</b>は、<b>PCB特別措置法</b>に基づき、<b>2027年3月末</b>までに<b>廃棄処分</b>する<b>義務</b>があり、<b>期限</b>を<b>過ぎる</b>と、懲役刑や高額な罰金が科される可能性があります。これらのことから、事前にPCB含有調査を行うことが<b>事実上必須</b>となっています。
+                                </p>
+                            </div>
+                            
+                            <!-- 「事業者の義務」小セクション - 背景色を bg-white に統一 -->
+                            <div class="mt-6 p-4 rounded-lg border-l-4 border-blue-400 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-3 font-bold text-base sm:text-lg"><b>事業者の義務</b></h4>
+                                <p class="text-base text-slate-700 leading-relaxed">
+                                    <b>PCB</b>の<b>含有</b>が<b>確認</b>された<b>保管事業者</b>は、<b>PCB特別措置法</b>および<b>廃棄物処理法</b>に基づき、PCB廃棄物の適正な<b>保管</b>と<b>処分</b>を行う<b>義務</b>があります。<br><br>・<b>保管</b>について<br>廃棄物処理法に基づく保管基準として、有害物質が外部に漏れ出し、環境や人体に悪影響を及ぼすのを防ぐための<b>漏洩防止措置</b>、<b>地下浸透防止</b>の<b>措置</b>、<b>飛散</b>・<b>悪臭</b>の<b>防止</b>、囲いや掲示板の設置など、必要な措置を講じる<b>義務</b>があります。<br>・<b>収集・運搬、処分</b>について<br>保管事業者は<b>都道府県知事の許可</b>を得た専門業者に委託する必要があります。<br><br>このように、<b>PCB廃棄物</b>の<b>保管事業者</b>には、義務を履行する過程において、専門業者を選定して収集・運搬・処分を委託したり、各種届出や申請手続きを行ったりするなど、煩雑な業務が生じます。
+                                </p>
+                            </div>
+                            
+                            <!-- 「PCB廃棄物処理等に係る支援制度（PCB助成金）」小セクション - 背景色を bg-white に統一 -->
+                            <div class="mt-6 p-4 rounded-lg border-l-4 border-blue-400 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-3 font-bold text-base sm:text-lg"><b>PCB廃棄物処理等に係る支援制度（PCB助成金）</b></h4>
+                                <p class="text-base text-slate-700 leading-relaxed">
+                                    PCB廃棄物の処分期限までの適正処理を加速化させるため、<b>国</b>（<b>環境省</b>）は中小企業（個人事業主を含む）に対する<b>助成金</b>を創設し、<b>調査</b>・<b>収集運搬</b>・<b>処分</b>にかかる費用の<b>最大2分の1</b>まで助成金が交付されます。
+                                </p>
+                            </div>
+
+                            <p class="text-base text-slate-700 leading-relaxed mt-6">
+                                <b>アーステスラ</b>では、PCB含有の変圧器の<b>撤去</b>・<b>搬出</b>から<b>収集</b>・<b>運搬</b>、<b>処分</b>、さらに<b>助成金交付</b>のための<b>申請書</b>の<b>作成代行</b>まで、全て一貫した対応が可能です。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 5. 蛍光灯2027年問題 (アコーディオン化) -->
+                    <div class="safe-management-section p-6 sm:p-8 md:p-10" id="fluorescent-lamp-section">
+                         <!-- アコーディオンボタン -->
+                        <button class="accordion-toggle w-full flex justify-between items-center text-left text-sm sm:text-base md:text-lg font-bold text-[#0B4F6C] border-b-2 border-slate-300 pb-3 transition-colors duration-200" data-target="content-fluorescent-lamp">
+                            <div class="flex items-center">
+                                <!-- アイコンは fa-lightbulb (電球/照明) を使用 -->
+                                <span class="accordion-heading-icon text-2xl"><i class="fas fa-lightbulb"></i></span>
+                                <span class="text-lg sm:text-xl md:text-2xl">蛍光灯の水銀規制</span>
+                            </div>
+                            <!-- 開閉アイコン -->
+                            <i class="fas fa-chevron-down accordion-icon transform transition-transform duration-300 text-[#20A4F3]"></i>
+                        </button>
+                        
+                        <!-- コンテンツエリア (初期非表示) -->
+                        <div id="content-fluorescent-lamp" class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <!-- 蛍光灯2027年問題の導入文 -->
+                            <p class="text-base text-slate-700 leading-relaxed mb-6">
+                                <b>水銀</b>を含む<b>蛍光灯</b>の<b>製造</b>及び<b>輸出入</b>は、<b>2027年末</b>をもって<b>禁止</b>されます。<br>
+                                そのため、現在普及している<b>LED照明</b>が、蛍光灯よりはるかに<b>省エネ</b>・<b>長寿命</b>であり、水銀を含まず<b>安全性</b>も<b>高い</b>ため、今のうちから計画的な<b>LED照明</b>への<b>切り替え</b>が<b>推奨</b>されています。
+                            </p>
+                            
+                            <!-- LED照明の主なメリット 小セクション - 背景色を bg-white に統一 -->
+                            <div class="mt-6 p-4 rounded-lg border-l-4 border-blue-400 bg-white shadow-inner">
+                                <h4 class="text-[#0B4F6C] mb-3 font-bold text-base sm:text-lg"><b>蛍光灯からLED照明へ切り替えることのメリット</b></h4>
+                                <!-- 変更点: list-disc-jp クラスを list-disc pl-6 に変更 -->
+                                <ul class="list-disc pl-6 text-base text-slate-700 leading-relaxed">
+                                    <li><b>電気代</b>が約<b>50%</b>～<b>80%</b>ダウン</li>
+                                    <li><b>消費電力</b>は約<b>50%</b>〜<b>85%</b>の削減</li>
+                                    <li><b>平均寿命</b>約<b>15年</b></li>
+                                </ul>
+                                <p class="text-sm text-slate-500 mt-2">
+                                    （一般社団法人 日本照明工業会（JLMA）やメーカーの公開データに基づく）
+                                </p>
+                            </div>
+
+                            <p class="text-base text-slate-700 leading-relaxed mt-6">
+                                <b>アーステスラ</b>では、蛍光灯から<b>LED化</b>への<b>切り替え工事</b>にも<b>対応</b>できます。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="blue-gradient-section py-8 px-4 sm:py-10 sm:px-6 rounded-2xl max-w-4xl mx-auto mb-12 mt-12">
+                    <p class="text-base sm:text-lg lg:text-xl font-bold">
+                        見えないリスクを、確かな安心に変える。アーステスラの更新工事。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-custom-navy text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">
+                &copy; 2025 電気保安法人 株式会社アーステスラ. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- トップに戻るボタン -->
+    <button id="scrollToTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // トップに戻るボタン
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const header = document.getElementById('header');
+
+            const handleScroll = () => {
+                 // ヘッダーのスクロール効果
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+                
+                // トップに戻るボタンの表示
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+            
+            // 初回ロード時の状態を設定
+            handleScroll();
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ==================== アコーディオンロジック ====================
+            document.querySelectorAll('.accordion-toggle').forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    const content = document.getElementById(targetId);
+                    const icon = button.querySelector('.accordion-icon');
+
+                    // 選択されたアコーディオンがすでに開いている場合、閉じる
+                    if (content.classList.contains('active')) {
+                        // 閉じる処理
+                        content.style.maxHeight = '0';
+                        content.classList.remove('active', 'mt-4'); // mt-4を外してマージンをリセット
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        // 開く処理
+                        // scrollHeightを使ってコンテンツの高さに合わせ、アニメーションさせる
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.classList.add('active', 'mt-4'); // mt-4を追加して上部のマージンを確保
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+
+            // リサイズ時に開いているアコーディオンの max-height を調整するロジック
+            window.addEventListener('resize', () => {
+                document.querySelectorAll('.accordion-content.active').forEach(content => {
+                    // 一旦'none'にしてscrollHeightを正確に取得後、再設定
+                    content.style.maxHeight = 'none'; 
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                });
+            });
+            // =============================================================
+        });
+    </script>
+</body>
+</html>
